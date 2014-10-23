@@ -14,6 +14,6 @@ module.exports = function(str, type) {
       str = color.yellow(str);
     }
 
-    console.log(str); }
+    console.log(str);
   }
 }
