@@ -1,0 +1,12 @@
+{
+  "name": "magic-log",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "bash-color": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/express-magic/magic-log.git"
+  }
+}
