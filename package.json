@@ -2,6 +2,7 @@
   "name": "magic-log",
   "version": "0.0.1",
   "private": true,
+  "main": "./log.js",
   "dependencies": {
     "bash-color": "0.0.3"
   },
