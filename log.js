@@ -1,10 +1,14 @@
 'use strict';
-var color = require('bash-color')
-  , verbose = true
+var color   = require('bash-color')
   , log
 ;
+
+log.verbose = true;
+
 log = function() {
-  Function.prototype.apply.apply(console.log, [console, arguments]);
+  if ( log.verbose ) {
+    Function.prototype.apply.apply(console.log, [console, arguments]);
+  }
 }
 log.warn = function () {
   arguments[0] = color.yellow(arguments[0]);
@@ -15,7 +19,15 @@ log.error = function() {
   Function.prototype.apply.apply(console.log, [console, arguments]);
 }
 log.success = function() {
-  arguments[0] = color.green(arguments[0]);
-  Function.prototype.apply.apply(console.log, [console, arguments]);
+  if ( log.verbose ) {
+    arguments[0] = color.green(arguments[0]);
+    Function.prototype.apply.apply(console.log, [console, arguments]);
+  }
 }
+log.info = function() {
+  if ( log.verbose ) {
+    Function.prototype.apply.apply(console.log, [console, arguments]);
+  }
+}
+
 module.exports = log;
