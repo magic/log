@@ -27,6 +27,7 @@ log.success = function() {
 }
 log.info = function() {
   if ( log.verbose ) {
+    arguments[0] = color.green(arguments[0]);
     Function.prototype.apply.apply(console.log, [console, arguments]);
   }
 }
