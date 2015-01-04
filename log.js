@@ -31,5 +31,7 @@ log.info = function() {
     Function.prototype.apply.apply(console.log, [console, arguments]);
   }
 }
-
+log.dir = function () {
+  Function.prototype.apply.apply(console.dir, [console, arguments]);
+}
 module.exports = log;
