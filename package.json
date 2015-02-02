@@ -4,7 +4,7 @@
   "private": true,
   "main": "./log.js",
   "dependencies": {
-    "bash-color": "0.0.3"
+    "bash-color": "file:../../node_modules/bash-color"
   },
   "repository": {
     "type": "git",
