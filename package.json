@@ -2,7 +2,10 @@
   "name": "magic-log",
   "version": "0.0.1",
   "private": true,
-  "main": "./log.js",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "babel src/ --out-file index.js --source-maps"
+  },
   "dependencies": {
     "bash-color": "file:../../node_modules/bash-color"
   },
