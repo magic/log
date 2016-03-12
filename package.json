@@ -1,10 +1,13 @@
 {
-  "name": "magic-browser-log",
+  "name": "magic-server-log",
   "version": "0.0.1",
-  "description": "browser logging utility",
+  "description": "server logging utility",
   "author": "Wizards & Witches <team@wiznwit.com>",
   "license": "AGPL-3.0",
   "main": "index.js",
+  "dependencies": {
+    "bash-color": "0.0.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-eslint": "5.0.0",
@@ -29,8 +32,5 @@
       "name": "jascha ehrenreich",
       "github": "jaeh"
     }
-  ],
-  "dependencies": {
-    "bash-color": "0.0.3"
-  }
+  ]
 }
