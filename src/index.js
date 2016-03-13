@@ -1,36 +1,64 @@
-"use strict";
+import { isNumber, isString } from 'magic-types';
+
 import color from 'bash-color';
 
-var verbose = process.env !== 'production';
+const logLevels = ['all', 'warnings', 'errors'];
 
-export function log() {
-  if ( verbose ) {
-    Function.prototype.apply.apply(console.log, [console, arguments]);
-  }
-}
+const colorize =
+  (color, ...args) =>
+    args.map(
+      arg =>
+        color(arg)
+    );
 
-export function warn() {
-  arguments[0] = color.yellow(arguments[0]);
-  Function.prototype.apply.apply(console.warn, [console, arguments]);
-}
+export const log =
+  (...args) =>
+    log.logLevel === 0 &&
+    console.log(...args);
 
-export function error() {
-  arguments[0] = color.red(arguments[0]);
-  Function.prototype.apply.apply(console.error, [console, arguments]);
-}
+log.logLevel = 0;
 
-export function success() {
-  if (verbose) {
-    arguments[0] = color.green(arguments[0]);
-    Function.prototype.apply.apply(console.log, [console, arguments]);
-  }
-}
+log.setLogLevel =
+  ({ logLevel }) => {
+    if (isNumber(logLevel)) {
+      if (logLevels.length < logLevel) {
+        log.setLogLevelError({ logLevel });
+        return;
+      }
 
-export function info() {
-  if (verbose) {
-    arguments[0] = color.green(arguments[0]);
-    Function.prototype.apply.apply(console.log, [console, arguments]);
-  }
-}
+      log.logLevel = logLevels[logLevel];
+    } else if (isString(logLevel)) {
+      const logLevelIndex = logLevels.indexOf(logLevel);
+
+      if (logLevelIndex === -1) {
+        log.setLogLevelError({ logLevel });
+        return;
+      }
+
+      log.logLevel = logLevelIndex;
+    }
+  };
+
+log.setLogLevelError =
+  ({ logLevel }) =>
+    log.error('logLevel', logLevel, 'does not exist');
+
+log.warn =
+  (...args) =>
+    log.logLevel >= 1 &&
+    console.log(...colorize(color.yellow, ...args));
+
+log.error =
+  (...args) =>
+    console.error(...colorize(color.red, ...args));
+
+log.success =
+  (...args) =>
+    log.logLevel === 0 &&
+    console.log(...colorize(color.green, ...args));
+
+log.info =
+  (...args) =>
+    log(...args);
 
 export default log;
