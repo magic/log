@@ -1,6 +1,7 @@
 NODE_BIN=node_modules/.bin/
 
 .PHONY: \
+	all \
 	dev \
 	build \
 	clean \
@@ -8,13 +9,14 @@ NODE_BIN=node_modules/.bin/
 	lint-fix \
 	test
 
+all: help
+
 dev: lint
 	@echo 'babelify package and watch for changes'
 	@${NODE_BIN}babel \
 		src/index.js \
 		--watch \
-		--out-file index.js \
-		--experimental
+		--out-file index.js
 
 build: lint
 	@echo 'babelify package'
@@ -32,8 +34,7 @@ test: build
 	@echo 'building test source'
 	@${NODE_BIN}babel \
 		src/test/ \
-		--out-dir test/ \
-		--experimental
+		--out-dir test/
 	${NODE_BIN}mocha \
 		./test/index.js \
 		--reporter spec \
@@ -70,7 +71,7 @@ running make without task starts a dev env \n\
 dev      - start dev env \n\
 build    - build library \n\
 clean    - remove build library and test files \n\
-lint  	 - eslint javascript sources
-lint-fix - eslint and fix javascript sources
+lint  	 - eslint javascript sources \n\
+lint-fix - eslint and fix javascript sources \n\
 test     - run tests \n\
 "
