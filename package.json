@@ -2,9 +2,9 @@
   "name": "magic-server-log",
   "version": "0.0.1",
   "description": "server logging utility",
+  "main": "index.js",
   "author": "Wizards & Witches <team@wiznwit.com>",
   "license": "AGPL-3.0",
-  "main": "index.js",
   "dependencies": {
     "bash-color": "0.0.3"
   },
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/magic/browser-log"
+    "url": "https://github.com/magic/server-log"
   },
   "bugs": {
-    "url": "https://github.com/magic/browser-log/issues"
+    "url": "https://github.com/magic/server-log/issues"
   },
-  "homepage": "https://github.com/magic/browser-log",
+  "homepage": "https://github.com/magic/server-log",
   "contributors": [
     {
       "name": "jascha ehrenreich",
