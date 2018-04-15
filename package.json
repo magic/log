@@ -6,8 +6,8 @@
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
   "scripts": {
-    "start": "NODE_ENV=production nyc -a node test",
-    "test": "nyc -a node test",
+    "start": "NODE_ENV=production nyc -a test",
+    "test": "nyc -a test",
     "format": "format --write",
     "format:check": "format --list-different"
   },
