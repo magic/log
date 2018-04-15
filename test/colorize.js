@@ -13,7 +13,7 @@ const fns = {
     },
     {
       fn: () => colorize('red', 'orange'),
-      expect: '\u001b[31morange\u001b[39m'
+      expect: '\u001b[31morange\u001b[39m',
     },
     {
       fn: () => colorize('green', 'orange'),
@@ -85,8 +85,8 @@ const fns = {
     },
     {
       fn: () => colorize('green', () => {}),
-      expect: '\u001b[32m() => {}\u001b[39m'
-    }
+      expect: '\u001b[32m() => {}\u001b[39m',
+    },
   ],
 }
 
