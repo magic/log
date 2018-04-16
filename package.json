@@ -6,10 +6,10 @@
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
   "scripts": {
-    "start": "NODE_ENV=production nyc -a test",
-    "test": "nyc -a test",
-    "format": "format --write",
-    "format:check": "format --list-different"
+    "start": "NODE_ENV=production t",
+    "test": "t",
+    "format": "f -w",
+    "format:check": "f"
   },
   "dependencies": {
     "@magic/types": "github:magic/types"
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/magic/log",
   "devDependencies": {
-    "@magic/lint": "github:magic/lint",
     "@magic/test": "github:magic/test"
   }
 }
