@@ -11,10 +11,14 @@
 "@magic/test@github:magic/test":
   version "0.0.1"
   resolved "https://codeload.github.com/magic/test/tar.gz/daf3baa2f14dfe8215902c9b0a450f0bdb247ac6"
+
+"@magic/test@magic/test":
+  version "0.0.1"
+  resolved "https://codeload.github.com/magic/test/tar.gz/e09dc20f0ed6452cffbf1713370b95eadb23851f"
   dependencies:
     "@magic/log" "github:magic/log"
     nyc "11.6.0"
-    prettier "1.11.1"
+    prettier "1.12.0"
 
 "@magic/types@github:magic/types":
   version "0.0.1"
@@ -1289,6 +1293,10 @@ preserve@^0.2.0:
 prettier@1.11.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.11.1.tgz#61e43fc4cd44e68f2b0dfc2c38cd4bb0fccdcc75"
+
+prettier@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.12.0.tgz#d26fc5894b9230de97629b39cae225b503724ce8"
 
 pseudomap@^1.0.2:
   version "1.0.2"
