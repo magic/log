@@ -4,9 +4,11 @@ const log = require('../src')
 
 const logKeys = Object.values(log)
 
+const isProd = process.env.NODE_ENV === 'production'
+
 const fns = [
   { fn: () => log, expect: isFunction },
-  { fn: () => log.level, expect: 0 },
+  { fn: () => log.level, expect: isProd ? 1 : 0 },
   { fn: () => log.levels, expect: Array.isArray },
   { fn: () => log.setLevel, expect: isFunction },
   { fn: () => log.warn, expect: isFunction },
