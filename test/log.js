@@ -18,7 +18,7 @@ const resetEnv = () => {
 
 const isProd = () => process.env.NODE_ENV === 'production'
 
-const defaultLevel = () => isProd() ? 1: 0
+const defaultLevel = () => (isProd() ? 1 : 0)
 
 const fns = {
   logLevel: [
@@ -34,7 +34,7 @@ const fns = {
         const lvl1 = log.level
         log.setLevel()
         const lvl2 = log.level
-        return [ lvl1, lvl2 ]
+        return [lvl1, lvl2]
       },
       expect: ([lvl1, lvl2]) => lvl1 === 2 && lvl2 === defaultLevel(),
     },
