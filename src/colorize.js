@@ -1,24 +1,17 @@
-const color = require('./color')
+const is = require('@magic/types')
 
-const {
-  isError,
-  isDate,
-  isFunction,
-  isString,
-  isNumber,
-  isArray,
-} = require('@magic/types')
+const paint = require('./color')
 
 const mapArg = arg => {
-  if (typeof arg === 'string' || typeof arg === 'number') {
+  if (is.string(arg) || is.number(arg)) {
     return arg
   }
 
-  if (isArray(arg)) {
+  if (is.array(arg)) {
     arg = deepJoin(arg)
-  } else if (isFunction(arg) || isDate(arg) || isError(arg)) {
+  } else if (is.function(arg) || is.date(arg) || is.error(arg)) {
     arg = arg.toString()
-  } else if (typeof arg === 'object') {
+  } else if (is.object(arg)) {
     arg = JSON.stringify(arg)
   }
 
@@ -27,13 +20,21 @@ const mapArg = arg => {
 
 const deepJoin = args => args.map(mapArg).join(' ')
 
-const colorize = (cl = 'white', ...args) => {
-  const clFn = color[cl]
-  if (typeof clFn !== 'function') {
-    return [].concat(cl, args).join(' ')
+const colorize = (cl, ...args) => {
+  if (!cl && is.empty(args)) {
+    return new Error('colorize called without arguments')
+  }
+  const clFn = paint[cl]
+
+  if (!is.function(clFn)) {
+    const str = []
+      .concat(cl, args)
+      .filter(t => t !== '')
+      .join(' ')
+    return paint.red(str)
   }
 
-  if (args.length === 0) {
+  if (is.empty(args)) {
     return ''
   }
 

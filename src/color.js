@@ -1,3 +1,5 @@
+const is = require('@magic/types')
+
 const codes = {
   reset: [0, 0],
 
@@ -17,8 +19,12 @@ const codes = {
   grey: [94, 39],
 }
 
-const paint = (key, ...str) => {
-  const val = paint.codes[key] || paint.codes['red']
+const paint = (key = 'red', ...str) => {
+  if (!is.string(key) || is.empty(key) || !is.array(paint.codes[key])) {
+    key = 'red'
+  }
+
+  const val = paint.codes[key]
   const style = {
     open: `\u001b[${val[0]}m`,
     close: `\u001b[${val[1]}m`,
