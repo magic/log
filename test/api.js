@@ -1,4 +1,4 @@
-const { isObject, isFunction } = require('@magic/types')
+const is = require('@magic/types')
 
 const log = require('../src')
 
@@ -7,15 +7,15 @@ const logKeys = Object.values(log)
 const isProd = process.env.NODE_ENV === 'production'
 
 const fns = [
-  { fn: () => log, expect: isFunction },
+  { fn: () => log, expect: is.function },
   { fn: () => log.level, expect: isProd ? 1 : 0 },
-  { fn: () => log.levels, expect: Array.isArray },
-  { fn: () => log.setLevel, expect: isFunction },
-  { fn: () => log.warn, expect: isFunction },
-  { fn: () => log.success, expect: isFunction },
-  { fn: () => log.error, expect: isFunction },
-  { fn: () => log.info, expect: isFunction },
-  { fn: () => log.log, expect: isFunction },
+  { fn: () => log.levels, expect: is.array },
+  { fn: () => log.setLevel, expect: is.function },
+  { fn: () => log.warn, expect: is.function },
+  { fn: () => log.success, expect: is.function },
+  { fn: () => log.error, expect: is.function },
+  { fn: () => log.info, expect: is.function },
+  { fn: () => log.log, expect: is.function },
 ]
 
 module.exports = fns
