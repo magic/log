@@ -34,7 +34,9 @@ log.info = (...a) => log.level === 0 && console.log(...a)
 log.success = (...a) => log.info(color('green', ...a))
 
 const stringify = (str) => str.map(a => {
-  if (is.array(a)) {
+  if (is.undefined(a) || is.null(a)) {
+    return
+  } else if (is.array(a)) {
     return a.join(' ')
   } else if (is.object(a)) {
     return JSON.stringify(a)
@@ -43,7 +45,7 @@ const stringify = (str) => str.map(a => {
   }
 
   return a
-})
+}).filter(t => !t).join(' ')
 
 log.error = (...a) => console.error(color('red', stringify(a)))
 
