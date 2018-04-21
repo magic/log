@@ -33,9 +33,21 @@ log.info = (...a) => log.level === 0 && console.log(...a)
 
 log.success = (...a) => log.info(color('green', ...a))
 
-log.error = (...a) => console.error(color('red', JSON.stringify(...a)))
+const stringify = (str) => str.map(a => {
+  if (is.array(a)) {
+    return a.join(' ')
+  } else if (is.object(a)) {
+    return JSON.stringify(a)
+  } else if (is.function(a.toString)) {
+    return a.toString()
+  }
 
-log.warn = (...a) => console.warn(color('yellow', JSON.stringify(...a)))
+  return a
+})
+
+log.error = (...a) => console.error(color('red', stringify(a)))
+
+log.warn = (...a) => console.warn(color('yellow', stringify(a)))
 
 log.annotate = (...msg) => log.info(color('grey', ...msg))
 
