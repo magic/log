@@ -31,26 +31,15 @@ log.setLevel = (lvl = level) => {
 
 log.info = (...a) => log.level === 0 && console.log(...a)
 
-log.success = (...a) => log.info(color('green', a))
+log.success = (...a) => log.info(color('green', ...a))
 
-log.error = (...a) => console.error(color('red', JSON.stringify(a)))
+log.error = (...a) => console.error(color('red', JSON.stringify(...a)))
 
-log.warn = (...a) => console.warn(color('yellow', JSON.stringify(a)))
+log.warn = (...a) => console.warn(color('yellow', JSON.stringify(...a)))
 
-log.annotate = msg => log.info(color('grey', msg))
+log.annotate = (...msg) => log.info(color('grey', ...msg))
 
 log.log = (...a) => log.level === 0 && console.log(...a)
-
-log.pass = ({ msg, expString }) =>
-  log.info(color('green', '* pass:'), msg, 'expected', expString)
-
-log.fail = ({ msg, result, expString, exp }) =>
-  log(
-    color('red', '* fail:'),
-    `\`${msg}\``,
-    `expected: ${expString}`,
-    `got: ${result} === ${exp}`,
-  )
 
 log.color = color
 
