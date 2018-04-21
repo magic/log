@@ -6,7 +6,7 @@ const logKeys = Object.values(log)
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const fns = [
+module.exports = [
   { fn: () => log, expect: is.function },
   { fn: () => log.level, expect: isProd ? 1 : 0 },
   { fn: () => log.levels, expect: is.array },
@@ -17,5 +17,3 @@ const fns = [
   { fn: () => log.info, expect: is.function },
   { fn: () => log.log, expect: is.function },
 ]
-
-module.exports = fns

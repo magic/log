@@ -2,9 +2,7 @@ const is = require('@magic/types')
 
 const colorize = require('../src/colorize')
 
-// TODO: test underline, bold etc
-
-const fns = {
+module.exports = {
   colors: [
     { fn: () => colorize(), expect: is.error },
     { fn: () => colorize('test'), expect: is.string },
@@ -105,5 +103,3 @@ const fns = {
     },
   ],
 }
-
-module.exports = fns

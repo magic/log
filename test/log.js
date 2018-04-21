@@ -20,7 +20,7 @@ const isProd = () => process.env.NODE_ENV === 'production'
 
 const defaultLevel = () => (isProd() ? 1 : 0)
 
-const fns = {
+module.exports = {
   logLevel: [
     { fn: () => log.level, expect: defaultLevel() },
     {
@@ -44,5 +44,3 @@ const fns = {
     { fn: () => log.setLevel() && log.level, expect: defaultLevel() },
   ],
 }
-
-module.exports = fns
