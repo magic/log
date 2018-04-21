@@ -24,6 +24,10 @@ const paint = (key = 'red', ...str) => {
     key = 'red'
   }
 
+  if (is.empty(str)) {
+    return ''
+  }
+
   const val = paint.codes[key]
   const style = {
     open: `\u001b[${val[0]}m`,
