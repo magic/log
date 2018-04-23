@@ -1,6 +1,6 @@
 const is = require('@magic/types')
 
-const color = require('./color')
+const { stringify, color } = require('./lib')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -33,21 +33,7 @@ log.info = (...a) => log.level === 0 && console.log(...a)
 
 log.success = (...a) => log.info(color('green', ...a))
 
-const stringify = (str) => str.map(a => {
-  if (is.undefined(a) || is.null(a)) {
-    return
-  } else if (is.array(a)) {
-    return a.join(' ')
-  } else if (is.object(a)) {
-    return JSON.stringify(a)
-  } else if (is.function(a.toString)) {
-    return a.toString()
-  }
-
-  return a
-}).filter(t => !t).join(' ')
-
-log.error = (...a) => console.error(color('red', stringify(a)))
+log.error = (...a) => console.error(color('red', a))
 
 log.warn = (...a) => console.warn(color('yellow', stringify(a)))
 

@@ -1,6 +1,6 @@
 const is = require('@magic/types')
 
-const colorize = require('../src/colorize')
+const colorize = require('../../src/lib/colorize')
 
 module.exports = {
   colors: [
