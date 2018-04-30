@@ -1,5 +1,5 @@
 module.exports = {
-  color: require('./color'),
+  paint: require('./paint'),
   colorize: require('./colorize'),
   stringify: require('./stringify'),
 }

@@ -1,47 +1,54 @@
 const is = require('@magic/types')
 
-const paint = require('./color')
+const paint = require('./paint')
+const stringify = require('./stringify')
 
-const mapArg = arg => {
-  if (is.string(arg) || is.number(arg)) {
-    return arg
-  }
-
-  if (is.array(arg)) {
-    arg = deepJoin(arg)
-  } else if (is.function(arg) || is.date(arg) || is.error(arg) || is.regexp(arg)) {
-    arg = arg.toString()
-  } else if (is.object(arg)) {
-    arg = JSON.stringify(arg)
-  }
-
-  return arg
-}
-
-const deepJoin = args => args.map(mapArg).join(' ')
-
-const colorize = (cl, ...args) => {
-  if (!cl && is.empty(args)) {
-    return new Error('colorize called without arguments')
-  }
-  const clFn = paint[cl]
-
-  if (!is.function(clFn)) {
-    const str = []
-      .concat(cl, args)
-      .filter(t => t !== '')
-      .join(' ')
-    return paint.red(str)
-  }
-
+const colorize = (...args) => {
   if (is.empty(args)) {
     return ''
+  } else if (args.length === 1) {
+    if (is.array(args[0])) {
+      return colorize(args[0])
+    }
+
+    return paint.red(args[0])
+  } else if (!args.some(t => is.fn(paint[t]))) {
+    return args
+      .map((v, i) => (i === 0 ? paint.red(v) : v))
+      .filter(t => t !== '')
+      .join(' ')
+      .trim()
   }
 
-  const deepJoined = deepJoin(args)
+  return args
+    .map((t, i) => {
+      if (is.array(t)) {
+        return colorize(...t)
+      } else if (is.fn(paint[args[i - 1]])) {
+        if (is.date(t) || is.regex(t) || is.function(t)) {
+          t = t.toString()
+        } else if (is.object(t)) {
+          t = JSON.stringify(t)
+        }
 
-  const ret = clFn(deepJoined)
-  return ret
+        return paint[args[i - 1]](t)
+      } else {
+        if (is.fn(paint[args[i]])) {
+          return ''
+        }
+
+        if (is.date(t) || is.regex(t) || is.function(t)) {
+          t = t.toString()
+        } else if (is.object(t)) {
+          t = JSON.stringify(t)
+        }
+
+        return t
+      }
+    })
+    .filter(t => t !== '')
+    .join(' ')
+    .trim()
 }
 
 module.exports = colorize

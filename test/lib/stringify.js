@@ -9,7 +9,7 @@ module.exports = [
   },
   {
     fn: () => stringify([1, 2, 3], 'test2', { t: 't' }),
-    expect: `${[1, 2, 3].toString()} test2 ${JSON.stringify({ t: 't' })}`,
+    expect: `1 2 3 test2 ${JSON.stringify({ t: 't' })}`,
   },
   { fn: () => stringify('t', '', 't2'), expect: 't t2' },
   { fn: () => stringify(undefined, 'test2'), expect: 'undefined test2' },

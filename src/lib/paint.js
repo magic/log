@@ -19,8 +19,8 @@ const codes = {
   grey: [94, 39],
 }
 
-const paint = (key = 'red', ...str) => {
-  if (!is.string(key) || is.empty(key) || !is.array(paint.codes[key])) {
+const paint = (key = 'red', str) => {
+  if (!is.string(key) || !is.array(paint.codes[key])) {
     key = 'red'
   }
 
@@ -29,6 +29,7 @@ const paint = (key = 'red', ...str) => {
   }
 
   const val = paint.codes[key]
+
   const style = {
     open: `\u001b[${val[0]}m`,
     close: `\u001b[${val[1]}m`,

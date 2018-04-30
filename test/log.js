@@ -1,46 +1,91 @@
+const { is } = require('@magic/test')
+
 const log = require('../src')
+const colorize = require('../src/lib/colorize')
 
-const oldEnv = process.env.NODE_ENV
+const cache = {
+  log: [],
+  error: [],
+  warn: [],
+  success: [],
+  annotate: [],
+}
 
-const setEnv = (env = 'development') => {
-  process.env.NODE_ENV = env
+const consoleMock = {
+  log: (...args) => {
+    cache.log.push(args)
+    return args
+  },
+  error: (...args) => {
+    cache.error.push(args)
+    return args
+  },
+  warn: (...args) => {
+    cache.warn.push(args)
+    return args
+  },
+  success: (...args) => {
+    cache.success.push(args)
+    return args
+  },
+  annotate: (...args) => {
+    cache.annotate.push(args)
+    return args
+  },
+}
+
+const isProd = ['-p', '--prod', '--production'].some(e => process.argv.indexOf(e) > -1)
+
+const dumpCache = () => {
+  Object.entries(cache).forEach(([k, v]) => {
+    if (k === 'error') {
+      while (v.length) {
+        console[k](v.shift())
+      }
+    }
+  })
+}
+
+const beforeAll = () => {
+  global.oldConsole = console
+  global.console = consoleMock
 
   return () => {
-    process.env.NODE_ENV = oldEnv
+    global.console = global.oldConsole
+
+    dumpCache()
   }
 }
 
-const resetEnv = () => {
-  log.setLevel()
-
-  return () => log.setLevel()
-}
-
-const isProd = () => process.env.NODE_ENV === 'production'
-
-const defaultLevel = () => (isProd() ? 1 : 0)
-
 module.exports = {
-  logLevel: [
-    { fn: () => log.level, expect: defaultLevel() },
+  beforeAll,
+  tests: [
     {
-      fn: () => log.setLevel(2),
-      expect: 2,
+      fn: () => log.log.toString(),
+      expect: log.toString(),
+      info: 'log.log is the same function as log',
     },
-    { fn: () => log.setLevel(5), expect: 2 },
+    { fn: () => log.info('test'), expect: isProd ? false : is.deep.equal(['test']) },
+    { fn: () => log.error('test'), expect: is.deep.equal([colorize('test')]) },
     {
-      fn: () => {
-        log.setLevel(3)
-        const lvl1 = log.level
-        log.setLevel()
-        const lvl2 = log.level
-        return [lvl1, lvl2]
-      },
-      expect: ([lvl1, lvl2]) => lvl1 === 2 && lvl2 === defaultLevel(),
+      fn: () => log.error('test', 'test2'),
+      expect: is.deep.equal([colorize('red', 'test'), 'test2']),
+      info: 'Only first argument is red',
     },
-    { fn: () => log.setLevel(5) && log.level, expect: 2 },
-    { fn: () => log.setLevel(1) && log.level, expect: 1 },
-    { fn: () => log.setLevel(2) && log.level, expect: 2 },
-    { fn: () => log.setLevel() && log.level, expect: defaultLevel() },
+    {
+      fn: () => log.warn('test', 'test2'),
+      expect: is.deep.equal([colorize('yellow', 'test'), 'test2']),
+      info: 'Only first argument is yellow',
+    },
+    {
+      fn: () => log.success('test', 'test2'),
+      expect: isProd ? false : is.deep.equal([colorize('green', 'test'), 'test2']),
+      info: 'Only first argument is green',
+    },
+    {
+      fn: () => log.annotate('test', 'test2'),
+      expect: isProd ? false : is.deep.equal([colorize('grey', 'test test2')]),
+      info: 'All arguments are grey',
+    },
   ],
 }

@@ -4,87 +4,86 @@ const colorize = require('../../src/lib/colorize')
 
 module.exports = {
   colors: [
-    { fn: () => colorize(), expect: is.error },
+    { fn: () => colorize(), expect: is.string },
+    { fn: () => colorize(), expect: '' },
     { fn: () => colorize('test'), expect: is.string },
     { fn: () => colorize('test'), expect: colorize('red', 'test') },
+    { fn: () => colorize('test', 'test2'), expect: `${colorize('red', 'test')} test2` },
+    { fn: () => colorize('black', 'STRING'), expect: '\u001b[30mSTRING\u001b[39m' },
+    { fn: () => colorize('red', 'STRING'), expect: '\u001b[31mSTRING\u001b[39m' },
+    { fn: () => colorize('green', 'STRING'), expect: '\u001b[32mSTRING\u001b[39m' },
     {
-      fn: () => colorize('test', 'test2'),
-      expect: colorize('red', 'test test2'),
+      fn: () => colorize('yellow', 'STRING'),
+      expect: '\u001b[33mSTRING\u001b[39m',
     },
     {
-      fn: () => colorize('black', 'orange'),
-      expect: '\u001b[30morange\u001b[39m',
+      fn: () => colorize('blue', 'STRING'),
+      expect: '\u001b[34mSTRING\u001b[39m',
     },
     {
-      fn: () => colorize('red', 'orange'),
-      expect: '\u001b[31morange\u001b[39m',
+      fn: () => colorize('purple', 'STRING'),
+      expect: '\u001b[35mSTRING\u001b[39m',
     },
     {
-      fn: () => colorize('green', 'orange'),
-      expect: '\u001b[32morange\u001b[39m',
+      fn: () => colorize('cyan', 'STRING'),
+      expect: '\u001b[36mSTRING\u001b[39m',
     },
     {
-      fn: () => colorize('yellow', 'orange'),
-      expect: '\u001b[33morange\u001b[39m',
-    },
-    {
-      fn: () => colorize('blue', 'orange'),
-      expect: '\u001b[34morange\u001b[39m',
-    },
-    {
-      fn: () => colorize('purple', 'orange'),
-      expect: '\u001b[35morange\u001b[39m',
-    },
-    {
-      fn: () => colorize('cyan', 'orange'),
-      expect: '\u001b[36morange\u001b[39m',
-    },
-    {
-      fn: () => colorize('white', 'orange'),
-      expect: '\u001b[37morange\u001b[39m',
+      fn: () => colorize('white', 'STRING'),
+      expect: '\u001b[37mSTRING\u001b[39m',
     },
   ],
   formatting: [
     {
-      fn: () => colorize('reset', 'orange'),
-      expect: '\u001b[0morange\u001b[0m',
+      fn: () => colorize('reset', 'STRING'),
+      expect: '\u001b[0mSTRING\u001b[0m',
     },
     {
-      fn: () => colorize('bold', 'orange'),
-      expect: '\u001b[1morange\u001b[22m',
+      fn: () => colorize('bold', 'STRING'),
+      expect: '\u001b[1mSTRING\u001b[22m',
     },
     {
-      fn: () => colorize('italic', 'orange'),
-      expect: '\u001b[3morange\u001b[23m',
+      fn: () => colorize('italic', 'STRING'),
+      expect: '\u001b[3mSTRING\u001b[23m',
     },
-    {
-      fn: () => colorize('underline', 'orange'),
-      expect: '\u001b[4morange\u001b[24m',
-    },
-    {
-      fn: () => colorize('strikethrough', 'orange'),
-      expect: '\u001b[9morange\u001b[29m',
-    },
+    { fn: () => colorize('underline', 'STRING'), expect: '\u001b[4mSTRING\u001b[24m' },
+    { fn: () => colorize('strikethrough', 'STRING'), expect: '\u001b[9mSTRING\u001b[29m' },
   ],
   arguments: [
     {
-      fn: () => colorize('white', 'orange', 'green', 'red'),
-      expect: '\u001b[37morange green red\u001b[39m',
+      fn: () => colorize('white', 'STRING', 'STRING', 'STRING'),
+      expect: '\u001b[37mSTRING\u001b[39m STRING STRING',
+      info: 'Color applies to next word',
     },
     {
-      fn: () => colorize('white', ['orange', 'green', 'red']),
-      expect: '\u001b[37morange green red\u001b[39m',
+      fn: () => colorize('white', 'STRING', 'green', 'STRING'),
+      expect: '\u001b[37mSTRING\u001b[39m \u001b[32mSTRING\u001b[39m',
+      info: 'Multiple colors apply to next word',
+    },
+    {
+      fn: () => colorize('white', ['STRING', 'STRING', 'STRING']),
+      expect: '\u001b[31mSTRING\u001b[39m STRING STRING',
       info: 'Arrays get flattened',
     },
     {
-      fn: () => colorize('white', ['orange'], ['green', 'red']),
-      expect: '\u001b[37morange green red\u001b[39m',
-      info: 'Multiple arguments get flattened',
+      fn: () => colorize('white', ['STRING'], ['STRING', 'STRING']),
+      expect: '\u001b[31mSTRING\u001b[39m \u001b[31mSTRING\u001b[39m STRING',
+      info: 'Multiple arguments get flattened. First item of Subarrays gets reddened',
     },
     {
-      fn: () => colorize('white', ['orange'], { green: 'green', red: 'red' }),
-      expect: '\u001b[37morange {"green":"green","red":"red"}\u001b[39m',
-      info: 'Objects get JSON.stringified',
+      fn: () => colorize('white', ['STRING'], ['green', 'STRING']),
+      expect: '\u001b[31mSTRING\u001b[39m \u001b[32mSTRING\u001b[39m',
+      info: 'Multiple arguments get flattened. First item of Subarrays gets colored',
+    },
+    {
+      fn: () => colorize('white', ['STRING'], 'green', { green: 'green', red: 'red' }),
+      expect: '\u001b[31mSTRING\u001b[39m \u001b[32m{"green":"green","red":"red"}\u001b[39m',
+      info: 'Objects get JSON.stringified and colored',
+    },
+    {
+      fn: () => colorize('white', ['STRING'], { green: 'green', red: 'red' }),
+      expect: '\u001b[31mSTRING\u001b[39m {"green":"green","red":"red"}',
+      info: 'Objects get JSON.stringified and not colored if not specified',
     },
     {
       fn: () => colorize('green', new Date(0)),
@@ -97,8 +96,8 @@ module.exports = {
       info: 'Functions get toStringed',
     },
     {
-      fn: () => colorize('', 'default color is red'),
-      expect: colorize('red', 'default color is red'),
+      fn: () => colorize('default color is Red'),
+      expect: colorize('red', 'default color is Red'),
       info: 'Default color is red',
     },
   ],

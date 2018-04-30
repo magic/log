@@ -1,6 +1,6 @@
 const is = require('@magic/types')
 
-const { stringify, color } = require('./lib')
+const { paint } = require('./lib')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -31,16 +31,17 @@ log.setLevel = (lvl = level) => {
 
 log.info = (...a) => log.level === 0 && console.log(...a)
 
-log.success = (...a) => log.info(color('green', ...a))
+log.success = (a, ...b) => log.info(paint('green', a), ...b)
 
-log.error = (...a) => console.error(color('red', a))
+log.error = (a, ...b) => console.error(paint('red', a), ...b)
 
-log.warn = (...a) => console.warn(color('yellow', stringify(a)))
+log.warn = (a, ...b) => console.warn(paint('yellow', a), ...b)
 
-log.annotate = (...msg) => log.info(color('grey', ...msg))
+log.annotate = (...a) => log.info(paint('grey', ...a))
 
-log.log = (...a) => log.level === 0 && console.log(...a)
+log.log = log
 
-log.color = color
+log.color = paint
+log.paint = paint
 
 module.exports = log
