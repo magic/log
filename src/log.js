@@ -8,7 +8,7 @@ const log = (...args) => console.log(...args)
 
 const level = process.env.NODE_ENV === 'production' ? 1 : 0
 log.level = level
-log.levels = ['all', 'warnings', 'errors']
+log.levels = ['all', 'warn', 'error']
 
 log.setLevel = (lvl = level) => {
   if (is.number(lvl)) {
@@ -16,7 +16,7 @@ log.setLevel = (lvl = level) => {
       lvl = log.levels.length - 1
     }
   } else if (is.string(lvl)) {
-    lvl = lvls.indexOf(lvl)
+    lvl = log.levels.indexOf(lvl)
   }
 
   // catch indexOf === -1 for strings
