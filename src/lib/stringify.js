@@ -5,7 +5,9 @@ const stringifyByType = a => {
     return stringifyByType(a[0])
   }
 
-  if (is.string(a) || is.number(a)) {
+  if (is.string(a)) {
+    return a
+  } else if (is.number(a)) {
     return a
   } else if (is.array(a)) {
     return stringify(...a)
