@@ -9,7 +9,7 @@ const mapArg = arg => {
 
   if (is.array(arg)) {
     arg = deepJoin(arg)
-  } else if (is.function(arg) || is.date(arg) || is.error(arg)) {
+  } else if (is.function(arg) || is.date(arg) || is.error(arg) || is.regexp(arg)) {
     arg = arg.toString()
   } else if (is.object(arg)) {
     arg = JSON.stringify(arg)
