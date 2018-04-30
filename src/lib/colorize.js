@@ -8,16 +8,10 @@ const handleArg = arg => {
     return ''
   }
 
-  if (is.date(arg)) {
-    arg = arg.toString()
-  } else if (is.regexp(arg)) {
-    arg = arg.toString()
-  } else if (is.function(arg)) {
-    arg = arg.toString()
-  } else if (is.array(arg)) {
+  if (is.array(arg)) {
     arg = colorize(...arg)
-  } else if (is.object(arg)) {
-    arg = JSON.stringify(arg)
+  } else {
+    arg = stringify(arg)
   }
 
   return arg
