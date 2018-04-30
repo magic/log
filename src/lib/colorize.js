@@ -3,52 +3,60 @@ const is = require('@magic/types')
 const paint = require('./paint')
 const stringify = require('./stringify')
 
+const handleArg = arg => {
+  if (!arg) {
+    return ''
+  }
+
+  if (is.date(arg)) {
+    arg = arg.toString()
+  } else if (is.regexp(arg)) {
+    arg = arg.toString()
+  } else if (is.function(arg)) {
+    arg = arg.toString()
+  } else if (is.array(arg)) {
+    arg = colorize(...arg)
+  } else if (is.object(arg)) {
+    arg = JSON.stringify(arg)
+  }
+
+  return arg
+}
+
 const colorize = (...args) => {
   if (is.empty(args)) {
     return ''
   } else if (args.length === 1) {
-    if (is.array(args[0])) {
-      return colorize(args[0])
+    const arg = args[0]
+    if (is.array(arg)) {
+      return colorize(...arg)
     }
 
-    return paint.red(args[0])
-  } else if (!args.some(t => is.fn(paint[t]))) {
-    return args
-      .map((v, i) => (i === 0 ? paint.red(v) : v))
-      .filter(t => t !== '')
-      .join(' ')
-      .trim()
+    return paint.red(arg)
   }
 
-  return args
-    .map((t, i) => {
-      if (is.array(t)) {
-        return colorize(...t)
-      } else if (is.fn(paint[args[i - 1]])) {
-        if (is.date(t) || is.regex(t) || is.function(t)) {
-          t = t.toString()
-        } else if (is.object(t)) {
-          t = JSON.stringify(t)
-        }
+  if (!args.some(arg => is.fn(paint[arg]))) {
+    args = ['red', ...args]
+  }
 
-        return paint[args[i - 1]](t)
-      } else {
-        if (is.fn(paint[args[i]])) {
-          return ''
-        }
+  return args.map((arg, i) => {
+    if (is.function(paint[arg])) {
+      return ''
+    }
 
-        if (is.date(t) || is.regex(t) || is.function(t)) {
-          t = t.toString()
-        } else if (is.object(t)) {
-          t = JSON.stringify(t)
-        }
+    arg = handleArg(arg)
 
-        return t
-      }
-    })
-    .filter(t => t !== '')
-    .join(' ')
-    .trim()
+    const color = i < 1 ? null : args[i - 1]
+    const colorFn = paint[color]
+    if (is.function(colorFn)) {
+      return colorFn(arg)
+    } else {
+      return arg
+    }
+  })
+  .filter(t => t !== '')
+  .join(' ')
+  .trim()
 }
 
 module.exports = colorize

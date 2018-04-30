@@ -2,6 +2,8 @@ const is = require('@magic/types')
 
 const colorize = require('../../src/lib/colorize')
 
+const date = new Date(0)
+
 module.exports = {
   colors: [
     { fn: () => colorize(), expect: is.string },
@@ -12,6 +14,8 @@ module.exports = {
     { fn: () => colorize('black', 'STRING'), expect: '\u001b[30mSTRING\u001b[39m' },
     { fn: () => colorize('red', 'STRING'), expect: '\u001b[31mSTRING\u001b[39m' },
     { fn: () => colorize('green', 'STRING'), expect: '\u001b[32mSTRING\u001b[39m' },
+    // { fn: () => colorize('green', date), expect: t => console.log(t) || t === `\u001b[32m${date}\u001b[39m` },
+    // { fn: () => colorize(['STRING', 'STRING']), expect: '\u001b[31mSTRING\u001b[39m STRING' },
     {
       fn: () => colorize('yellow', 'STRING'),
       expect: '\u001b[33mSTRING\u001b[39m',
@@ -61,28 +65,28 @@ module.exports = {
       info: 'Multiple colors apply to next word',
     },
     {
-      fn: () => colorize('white', ['STRING', 'STRING', 'STRING']),
-      expect: '\u001b[31mSTRING\u001b[39m STRING STRING',
+      fn: () => colorize('yellow', ['STRING', 'STRING', 'STRING']),
+      expect: '\u001b[33m\u001b[31mSTRING\u001b[39m STRING STRING\u001b[39m',
       info: 'Arrays get flattened',
     },
     {
-      fn: () => colorize('white', ['STRING'], ['STRING', 'STRING']),
-      expect: '\u001b[31mSTRING\u001b[39m \u001b[31mSTRING\u001b[39m STRING',
-      info: 'Multiple arguments get flattened. First item of Subarrays gets reddened',
+      fn: () => colorize('yellow', ['STRING'], ['STRING', 'STRING']),
+      expect: '\u001b[33m\u001b[31mSTRING\u001b[39m\u001b[39m \u001b[31mSTRING\u001b[39m STRING',
+      info: 'Multiple arguments get flattened. All items of Subarrays get reddened',
     },
     {
-      fn: () => colorize('white', ['STRING'], ['green', 'STRING']),
-      expect: '\u001b[31mSTRING\u001b[39m \u001b[32mSTRING\u001b[39m',
+      fn: () => colorize('yellow', ['STRING'], ['green', 'STRING']),
+      expect: '\u001b[33m\u001b[31mSTRING\u001b[39m\u001b[39m \u001b[32mSTRING\u001b[39m',
       info: 'Multiple arguments get flattened. First item of Subarrays gets colored',
     },
     {
-      fn: () => colorize('white', ['STRING'], 'green', { green: 'green', red: 'red' }),
-      expect: '\u001b[31mSTRING\u001b[39m \u001b[32m{"green":"green","red":"red"}\u001b[39m',
+      fn: () => colorize('yellow', ['STRING'], 'green', { g: 1, r: 2 }),
+      expect: '\u001b[33m\u001b[31mSTRING\u001b[39m\u001b[39m \u001b[32m{"g":1,"r":2}\u001b[39m',
       info: 'Objects get JSON.stringified and colored',
     },
     {
-      fn: () => colorize('white', ['STRING'], { green: 'green', red: 'red' }),
-      expect: '\u001b[31mSTRING\u001b[39m {"green":"green","red":"red"}',
+      fn: () => colorize('yellow', ['STRING'], { green: 'green', red: 'red' }),
+      expect: '\u001b[33m\u001b[31mSTRING\u001b[39m\u001b[39m {"green":"green","red":"red"}',
       info: 'Objects get JSON.stringified and not colored if not specified',
     },
     {
