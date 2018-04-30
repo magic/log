@@ -1,3 +1,0 @@
-const console = {
-  log: msg => {},
-}
