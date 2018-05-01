@@ -16,4 +16,5 @@ module.exports = [
   { fn: () => stringify(null, 'test2'), expect: 'null test2' },
   { fn: () => stringify(null, 'test2'), expect: 'null test2' },
   { fn: () => stringify(() => {}, 't'), expect: `${(() => {}).toString()} t` },
+  { fn: () => stringify([['t']], 't'), expect: 't t' },
 ]

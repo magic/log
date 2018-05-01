@@ -3,20 +3,6 @@ const is = require('@magic/types')
 const paint = require('./paint')
 const stringify = require('./stringify')
 
-const handleArg = arg => {
-  if (!arg) {
-    return ''
-  }
-
-  if (is.array(arg)) {
-    arg = colorize(...arg)
-  } else {
-    arg = stringify(arg)
-  }
-
-  return arg
-}
-
 const colorize = (...args) => {
   if (is.empty(args)) {
     return ''
@@ -38,10 +24,22 @@ const colorize = (...args) => {
       return ''
     }
 
-    arg = handleArg(arg)
+    if (!arg) {
+      return ''
+    }
 
-    const color = i < 1 ? null : args[i - 1]
-    const colorFn = paint[color]
+    if (is.array(arg)) {
+      arg = colorize(...arg)
+    } else {
+      arg = stringify(arg)
+    }
+
+    let colorFn
+    if (i > 0) {
+      const color = args[i - 1]
+      colorFn = paint[color]
+    }
+
     if (is.function(colorFn)) {
       return colorFn(arg)
     } else {

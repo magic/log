@@ -1,7 +1,7 @@
 const is = require('@magic/types')
 
 const stringifyByType = a => {
-  if (is.array(a) && is.len.eq(a, 1)) {
+  if (is.array(a) && a.length === 1) {
     return stringifyByType(a[0])
   }
 

@@ -20,12 +20,16 @@ const codes = {
 }
 
 const paint = (key = 'red', str) => {
-  if (!is.string(key) || !is.array(paint.codes[key])) {
+  if (!is.string(key)) {
     key = 'red'
   }
 
   if (is.empty(str)) {
     return ''
+  }
+
+  if(!is.array(paint.codes[key])) {
+    key = 'red'
   }
 
   const val = paint.codes[key]

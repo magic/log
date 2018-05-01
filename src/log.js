@@ -5,37 +5,53 @@ const { paint } = require('./lib')
 const isProd = process.env.NODE_ENV === 'production'
 
 const log = (...args) => console.log(...args)
-
-const level = process.env.NODE_ENV === 'production' ? 1 : 0
-log.level = level
 log.levels = ['all', 'warn', 'error']
+log.level = isProd ? 1 : 0
 
-log.setLevel = (lvl = level) => {
-  if (is.number(lvl)) {
-    if (lvl >= log.levels.length) {
-      lvl = log.levels.length - 1
-    }
-  } else if (is.string(lvl)) {
+log.setLevel = lvl => {
+  if (is.string(lvl)){
     lvl = log.levels.indexOf(lvl)
   }
 
-  // catch indexOf === -1 for strings
-  if (lvl < 0) {
-    lvl = 0
+  if (!is.number(lvl)) {
+    lvl = process.env.NODE_ENV === 'production' ? 1 : 0
   }
 
-  log.level = lvl
+  log.level = Math.min(log.levels.length - 1, Math.max(0, lvl))
 
-  return lvl
+  return log.level
 }
 
-log.info = (...a) => log.level === 0 && console.log(...a)
+log.info = (...a) => {
+  if (log.level > 0) {
+    return false
+  }
+
+  console.log(...a)
+
+  return true
+}
 
 log.success = (a, ...b) => log.info(paint('green', a), ...b)
 
-log.error = (a, ...b) => console.error(paint('red', a), ...b)
+log.error = (...args) => {
+  const [a, ...b] = args
+  const msg = [paint('red', a), ...b]
+  console.error(msg)
+  return true
+}
 
-log.warn = (a, ...b) => console.warn(paint('yellow', a), ...b)
+log.warn = (...args) => {
+  if (log.level > 1) {
+    return false
+  }
+
+  const [a, ...b] = args
+  const msg = [paint('yellow', a), ...b]
+  console.warn(msg)
+  
+  return true
+}
 
 log.annotate = (...a) => log.info(paint('grey', ...a))
 
@@ -43,5 +59,7 @@ log.log = log
 
 log.color = paint
 log.paint = paint
+
+log.setLevel()
 
 module.exports = log
