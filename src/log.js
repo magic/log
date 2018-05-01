@@ -2,11 +2,19 @@ const is = require('@magic/types')
 
 const { paint } = require('./lib')
 
-const isProd = process.env.NODE_ENV === 'production'
-
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']
-log.level = isProd ? 1 : 0
+
+log.resetLevel = () =>
+  process.env.NODE_ENV === 'production'
+    ? 1
+    : 0
+
+log.getLevel = () =>
+  is.number(log.level)
+    ? log.level
+    : log.resetLevel()
+
 
 log.setLevel = lvl => {
   if (is.string(lvl)){
@@ -22,12 +30,12 @@ log.setLevel = lvl => {
   return log.level
 }
 
-log.info = (...a) => {
-  if (log.level > 0) {
+log.info = (...msg) => {
+  if (log.getLevel() > 0) {
     return false
   }
 
-  console.log(...a)
+  console.log(...msg)
 
   return true
 }
@@ -37,19 +45,19 @@ log.success = (a, ...b) => log.info(paint('green', a), ...b)
 log.error = (...args) => {
   const [a, ...b] = args
   const msg = [paint('red', a), ...b]
-  console.error(msg)
+  console.error(...msg)
   return true
 }
 
 log.warn = (...args) => {
-  if (log.level > 1) {
+  if (log.getLevel() > 1) {
     return false
   }
 
   const [a, ...b] = args
   const msg = [paint('yellow', a), ...b]
-  console.warn(msg)
-  
+  console.warn(...msg)
+
   return true
 }
 
