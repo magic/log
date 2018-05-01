@@ -31,7 +31,6 @@ const resetEnvAndLog = (env, arg) => () => {
 }
 
 module.exports = [
-  { fn: () => log.level, expect: defaultLevel() },
   { fn: () => log.setLevel(2), expect: 2 },
   { fn: () => log.setLevel('all') && log.level, expect: 0 },
   { fn: () => log.setLevel('warn') && log.level, expect: 1 },
