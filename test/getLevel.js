@@ -9,8 +9,6 @@ const resetEnv = (env, fn, set = false) => () => {
     log.setLevel()
   }
 
-  console.error('level', log.level, log.getLevel(), env)
-
   const lvl = log[fn]()
   process.env.NODE_ENV = oldEnv
   return lvl
