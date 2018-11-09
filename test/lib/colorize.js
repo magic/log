@@ -69,7 +69,7 @@ module.exports = {
     },
     {
       fn: () => colorize('green', new Date(0)),
-      expect: '\u001b[32mThu Jan 01 1970 01:00:00 GMT+0100 (CET)\u001b[39m',
+      expect: '\u001b[32mThu Jan 01 1970 01:00:00 GMT+0100 (Central European Standard Time)\u001b[39m',
       info: 'Dates get toStringed',
     },
     {
