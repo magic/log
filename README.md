@@ -8,15 +8,20 @@ simple server side logging.
 [![Coverage Status][coveralls-image]][coveralls-url]
 
 
-Installation:
+#### installation:
 ```javascript
   npm install @magic/log
 ```
 
-Usage:
+#### usage:
+
+##### import
 ```javascript
 const log = require('@magic/log')
+```
 
+##### log levels
+```javascript
 // set logLevel to all
 log.setLevel('all')
 log.setLevel(0)
@@ -34,8 +39,12 @@ log.resetLevel()
 
 // get current logLevel
 log.getLevel()
+```
 
-// log functions:
+
+##### log functions
+
+```javascript
 // only outputs if logLevel === 'all'
 log.info('Some interesting yet useless information')
 
@@ -51,7 +60,6 @@ log.warn('WARN:', 'warn message')
 
 // make a message greyed out
 log.annotate('Annotate this message')
-
 ```
 
 [npm-image]: https://img.shields.io/npm/v/@magic/log.svg
