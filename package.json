@@ -9,7 +9,8 @@
     "start": "t -p",
     "test": "t",
     "format": "f -w",
-    "format:check": "f"
+    "format:check": "f",
+    "calls": "calls"
   },
   "dependencies": {
     "@magic/types": "github:magic/types"
