@@ -5,19 +5,12 @@ const { paint } = require('./lib')
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']
 
-log.resetLevel = () =>
-  process.env.NODE_ENV === 'production'
-    ? 1
-    : 0
+log.resetLevel = () => (process.env.NODE_ENV === 'production' ? 1 : 0)
 
-log.getLevel = () =>
-  is.number(log.level)
-    ? log.level
-    : log.resetLevel()
-
+log.getLevel = () => (is.number(log.level) ? log.level : log.resetLevel())
 
 log.setLevel = lvl => {
-  if (is.string(lvl)){
+  if (is.string(lvl)) {
     lvl = log.levels.indexOf(lvl)
   }
 
@@ -70,4 +63,22 @@ log.paint = paint
 
 log.setLevel()
 
+log.time = (...a) => {
+  if (log.getLevel() > 0) {
+    return false
+  }
+  console.log(typeof console.time)
+
+  console.time(...a)
+  return true
+}
+
+log.timeEnd = (...a) => {
+  if (log.getLevel() > 0) {
+    return false
+  }
+
+  console.timeEnd(...a)
+  return true
+}
 module.exports = log
