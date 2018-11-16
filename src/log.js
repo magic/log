@@ -63,22 +63,22 @@ log.paint = paint
 
 log.setLevel()
 
-log.time = (...a) => {
-  if (log.getLevel() > 0) {
-    return false
-  }
-  console.log(typeof console.time)
-
-  console.time(...a)
-  return true
-}
-
-log.timeEnd = (...a) => {
-  if (log.getLevel() > 0) {
+log.time = (a) => {
+  if (log.getLevel() > 1) {
     return false
   }
 
-  console.timeEnd(...a)
+  console.time(a)
   return true
 }
+
+log.timeEnd = (a) => {
+  if (log.getLevel() > 1) {
+    return false
+  }
+
+  console.timeEnd(a)
+  return true
+}
+
 module.exports = log
