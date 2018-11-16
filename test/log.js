@@ -89,18 +89,28 @@ module.exports = {
     },
     {
       fn: resetEnvAndLog('production', 'time', 'test'),
-      expect: false,
-      info: 'calling log.time in production does not log',
+      expect: true,
+      info: 'calling log.time in production logs',
     },
     {
       fn: resetEnvAndLog('production', 'timeEnd', 'test'),
-      expect: false,
-      info: 'calling log.timeEnd in production does not log',
+      expect: true,
+      info: 'calling log.timeEnd in production logs',
     },
     {
       fn: resetLogLevelAndLog(2, 'warn', 'test'),
       expect: false,
       info: 'calling log.warn in logLevel 2 does not log',
+    },
+    {
+      fn: resetLogLevelAndLog(2, 'time', 'test'),
+      expect: false,
+      info: 'log.time in logLevel 2 does not log',
+    },
+    {
+      fn: resetLogLevelAndLog(2, 'timeEnd', 'test'),
+      expect: false,
+      info: 'log.timeEnd in logLevel 2 does not log',
     },
   ],
 }
