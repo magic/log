@@ -16,7 +16,7 @@ const resetEnv = (env, fn, set = false) => () => {
 
 const isProd = () => process.env.NODE_ENV === 'production'
 
-const deleteAndReset = (fn) => {
+const deleteAndReset = fn => {
   const oldLevel = log.level
   log.level = undefined
   return log[fn]()
