@@ -19,36 +19,37 @@ const colorize = (...args) => {
     args = ['red', ...args]
   }
 
-  return args.map((arg, i) => {
-    if (is.function(paint[arg])) {
-      return ''
-    }
+  return args
+    .map((arg, i) => {
+      if (is.function(paint[arg])) {
+        return ''
+      }
 
-    if (!arg) {
-      return ''
-    }
+      if (!arg) {
+        return ''
+      }
 
-    if (is.array(arg)) {
-      arg = colorize(...arg)
-    } else {
-      arg = stringify(arg)
-    }
+      if (is.array(arg)) {
+        arg = colorize(...arg)
+      } else {
+        arg = stringify(arg)
+      }
 
-    let colorFn
-    if (i > 0) {
-      const color = args[i - 1]
-      colorFn = paint[color]
-    }
+      let colorFn
+      if (i > 0) {
+        const color = args[i - 1]
+        colorFn = paint[color]
+      }
 
-    if (is.function(colorFn)) {
-      return colorFn(arg)
-    } else {
-      return arg
-    }
-  })
-  .filter(t => t !== '')
-  .join(' ')
-  .trim()
+      if (is.function(colorFn)) {
+        return colorFn(arg)
+      } else {
+        return arg
+      }
+    })
+    .filter(t => t !== '')
+    .join(' ')
+    .trim()
 }
 
 module.exports = colorize

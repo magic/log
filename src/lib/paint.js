@@ -28,7 +28,7 @@ const paint = (key = 'red', str) => {
     return ''
   }
 
-  if(!is.array(paint.codes[key])) {
+  if (!is.array(paint.codes[key])) {
     key = 'red'
   }
 
