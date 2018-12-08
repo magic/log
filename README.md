@@ -1,5 +1,7 @@
 # magic-server-log
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/magic/log.svg)](https://greenkeeper.io/)
+
 simple server side logging.
 
 [![NPM version][npm-image]][npm-url]
