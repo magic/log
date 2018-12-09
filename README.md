@@ -1,13 +1,13 @@
-# magic-server-log
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/magic/log.svg)](https://greenkeeper.io/)
+# @magic/log
 
 simple server side logging.
+basically console.log + loglevels
 
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
+[![Greenkeeper badge](https://badges.greenkeeper.io/magic/log.svg)](https://greenkeeper.io/)
 
 
 #### installation:
