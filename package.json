@@ -12,9 +12,6 @@
     "format:check": "f",
     "calls": "calls"
   },
-  "dependencies": {
-    "@magic/types": "github:magic/types"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/magic/log"
@@ -25,5 +22,8 @@
   "homepage": "https://github.com/magic/log",
   "devDependencies": {
     "@magic/test": "github:magic/test"
+  },
+  "dependencies": {
+    "@magic/types": "0.0.1"
   }
 }
