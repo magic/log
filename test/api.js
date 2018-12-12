@@ -8,7 +8,6 @@ const isProd = () => process.env.NODE_ENV === 'production'
 
 module.exports = [
   { fn: () => log, expect: is.function },
-  { fn: () => log.resetLevel() && log.getLevel(), expect: isProd() ? 1 : 0 },
   { fn: () => log.levels, expect: is.array },
   { fn: () => log.setLevel, expect: is.function },
   { fn: () => log.warn, expect: is.function },

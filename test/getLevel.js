@@ -19,8 +19,9 @@ const isProd = () => process.env.NODE_ENV === 'production'
 const deleteAndReset = fn => {
   const oldLevel = log.level
   log.level = undefined
-  return log[fn]()
+  const ret = log[fn]()
   log.level = oldLevel
+  return ret
 }
 
 module.exports = [

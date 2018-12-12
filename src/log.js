@@ -5,21 +5,38 @@ const { paint } = require('./lib')
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']
 
-log.resetLevel = () => (process.env.NODE_ENV === 'production' ? 1 : 0)
+log.resetLevel = (env = process.env.NODE_ENV) => {
+  if (env === 'production') {
+    log.level = 1
+  } else {
+    log.level = 0
+  }
+  return log.level
+}
 
 log.getLevel = () => (is.number(log.level) ? log.level : log.resetLevel())
 
-log.setLevel = lvl => {
+log.setLevel = (lvl, env = process.env.NODE_ENV) => {
+  if (is.undefinedOrNull(lvl)) {
+    return log.resetLevel()
+  }
   if (is.string(lvl)) {
     lvl = log.levels.indexOf(lvl)
   }
 
-  if (!is.number(lvl)) {
-    lvl = process.env.NODE_ENV === 'production' ? 1 : 0
+  if (!is.number(lvl) || lvl < 0) {
+    if (env === 'production') {
+      lvl = 1
+    } else {
+      lvl = 0
+    }
   }
 
-  log.level = Math.min(log.levels.length - 1, Math.max(0, lvl))
+  if (lvl > log.levels.length - 1) {
+    lvl = log.levels.length - 1
+  }
 
+  log.level = lvl
   return log.level
 }
 
@@ -63,16 +80,15 @@ log.paint = paint
 
 log.setLevel()
 
-log.time = (a) => {
+log.time = a => {
   if (log.getLevel() > 1) {
     return false
   }
-
   console.time(a)
   return true
 }
 
-log.timeEnd = (a) => {
+log.timeEnd = a => {
   if (log.getLevel() > 1) {
     return false
   }
