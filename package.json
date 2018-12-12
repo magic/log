@@ -1,6 +1,6 @@
 {
   "name": "@magic/log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "enhanced console.log",
   "main": "src/index.js",
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
@@ -21,9 +21,12 @@
   },
   "homepage": "https://github.com/magic/log",
   "devDependencies": {
-    "@magic/test": "github:magic/test"
+    "@magic/test": "0.0.2"
   },
   "dependencies": {
     "@magic/types": "0.0.1"
-  }
+  },
+  "files": [
+    "src"
+  ]
 }
