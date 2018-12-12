@@ -24,6 +24,6 @@
     "@magic/test": "github:magic/test"
   },
   "dependencies": {
-    "@magic/types": "0.0.1"
+    "@magic/types": "0.0.2"
   }
 }
