@@ -24,7 +24,7 @@
     "@magic/test": "0.0.7"
   },
   "dependencies": {
-    "@magic/types": "0.0.2"
+    "@magic/types": "0.0.3"
   },
   "files": [
     "src"
