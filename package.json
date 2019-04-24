@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/magic/log",
   "devDependencies": {
-    "@magic/test": "0.0.9"
+    "@magic/test": "0.0.10"
   },
   "dependencies": {
     "@magic/types": "0.0.3"
