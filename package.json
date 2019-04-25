@@ -7,10 +7,15 @@
   "license": "AGPL-3.0",
   "scripts": {
     "start": "t -p",
-    "test": "t",
-    "format": "f -w",
+    "test": "t --exclude docs docsrc config.js",
+    "format": "f -w --exclude docs",
     "format:check": "f",
-    "calls": "calls"
+    "calls": "calls",
+    "build": "NODE_ENV=production magic build",
+    "prod": "NODE_ENV=production magic build serve",
+    "clean": "magic clean",
+    "serve": "magic serve",
+    "dev": "magic dev"
   },
   "repository": {
     "type": "git",
@@ -21,6 +26,10 @@
   },
   "homepage": "https://github.com/magic/log",
   "devDependencies": {
+    "@magic-modules/gitbadges": "github:magic-modules/gitbadges",
+    "@magic-modules/pre": "github:magic-modules/pre",
+    "@magic-themes/docs": "github:magic-themes/docs",
+    "@magic/core": "github:magic/core",
     "@magic/test": "0.0.10"
   },
   "dependencies": {
