@@ -23,7 +23,7 @@ module.exports = [
   { fn: () => log.setLevel(-1), expect: envLvl, info: '0 === "all"' },
   { fn: () => log.setLevel('all') && log.level, expect: 0, info: ' to all works' },
   { fn: () => log.setLevel('warn') && log.level, expect: 1, info: '' },
-  { fn: () => log.setLevel('error') && log.level, expect: 2,  },
+  { fn: () => log.setLevel('error') && log.level, expect: 2 },
   { fn: resetEnvAndLog('development'), expect: 0 },
   { fn: resetEnvAndLog('production'), expect: 1 },
   { fn: resetEnvAndLog('production', 5), expect: 2 },
