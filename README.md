@@ -4,6 +4,7 @@ simple server side logging.
 
 basically console.log + loglevels + process.env awareness
 
+[html-docs](https://magic.github.io/log)
 
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
