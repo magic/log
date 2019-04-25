@@ -1,7 +1,8 @@
 # @magic/log
 
 simple server side logging.
-basically console.log + loglevels
+
+basically console.log + loglevels + process.env awareness
 
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
