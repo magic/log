@@ -4,12 +4,26 @@ simple server side logging.
 
 basically console.log + loglevels + process.env awareness
 
+
 [![NPM version][npm-image]][npm-url]
 [![Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Greenkeeper badge](https://badges.greenkeeper.io/magic/log.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 
+[npm-image]: https://img.shields.io/npm/v/@magic/log.svg
+[npm-url]: https://www.npmjs.com/package/@magic/log
+[travis-image]: https://api.travis-ci.org/magic/log.svg?branch=master
+[travis-url]: https://travis-ci.org/magic/log
+[appveyor-image]: https://img.shields.io/appveyor/ci/jaeh/log/master.svg
+[appveyor-url]: https://ci.appveyor.com/project/jaeh/log/branch/master
+[coveralls-image]: https://coveralls.io/repos/github/magic/log/badge.svg
+[coveralls-url]: https://coveralls.io/github/magic/log
+[greenkeeper-image]: https://badges.greenkeeper.io/magic/log.svg
+[greenkeeper-url]: https://badges.greenkeeper.io/magic/log.svg
+[snyk-image]: https://snyk.io/test/github/magic/log/badge.svg
+[snyk-url]: https://snyk.io/test/github/magic/log
 
 #### installation:
 ```javascript
@@ -64,12 +78,3 @@ log.warn('WARN:', 'warn message')
 // make a message greyed out
 log.annotate('Annotate this message')
 ```
-
-[npm-image]: https://img.shields.io/npm/v/@magic/log.svg
-[npm-url]: https://www.npmjs.com/package/@magic/log
-[travis-image]: https://travis-ci.com/magic/log.svg?branch=master
-[travis-url]: https://travis-ci.org/magic/log
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/yk1hmw7ilwb74h5y/branch/master?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/jaeh/log/branch/master
-[coveralls-image]: https://coveralls.io/repos/github/magic/log/badge.svg
-[coveralls-url]: https://coveralls.io/github/magic/log
