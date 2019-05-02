@@ -1,5 +1,7 @@
 module.exports = {
   state: {
+    title: '@magic/log',
+    description: 'nodejs console.log + loglevels',
     logotext: '@magic/log',
     menu: [
       { to: '/#getting-started', text: 'Getting started' },
