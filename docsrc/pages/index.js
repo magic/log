@@ -1,8 +1,4 @@
-const state = {
-  title: '@magic/log',
-}
-
-const View = () => [
+module.exports = () => [
   h1('@magic/log'),
   p('nodejs console.log with loglevels and environment awareness.'),
 
@@ -74,7 +70,3 @@ log.setLevel(2)`),
   ]),
 ]
 
-module.exports = {
-  state,
-  View,
-}
