@@ -29,6 +29,7 @@ module.exports = {
           { to: '/#log-functions-annotate', text: 'log.annotate' },
         ],
       },
+      { to: '/#source', text: 'source' },
     ],
   },
 }

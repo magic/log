@@ -68,5 +68,12 @@ log.setLevel(2)`),
     h4({ id: 'log-functions-annotate' }, 'annotate'),
     Pre("log.annotate('this message is subtle and greyed out')"),
   ]),
-]
 
+  h2({ id: 'source' }, 'source'),
+  p([
+    'the source for this page is in the ',
+    Link({ to: 'https://github.com/magic/log/tree/master/example' }, 'example directory'),
+    ' and gets built and published to github using ',
+    Link({ to: 'https://github.com/magic/core' }, '@magic/core'),
+  ]),
+]
