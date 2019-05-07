@@ -7,7 +7,7 @@
   "license": "AGPL-3.0",
   "scripts": {
     "start": "t -p",
-    "test": "t --exclude docs docsrc config.js",
+    "test": "t --exclude docs example config.js",
     "format": "f -w --exclude docs",
     "format:check": "f",
     "calls": "calls",
