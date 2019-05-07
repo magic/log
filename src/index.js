@@ -40,7 +40,7 @@ log.setLevel = (lvl, env = process.env.NODE_ENV) => {
     lvl = log.levels.length - 1
   }
 
-  return log.level = lvl
+  return (log.level = lvl)
 }
 
 log.info = (...msg) => {

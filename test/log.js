@@ -37,7 +37,6 @@ const resetEnvAndLogLevel = (env, level) => () => {
   return log.getLevel()
 }
 
-
 const wrapError = () => {
   const logResult = log.error(new Error('test'))
   return logResult
