@@ -79,3 +79,8 @@ log.warn('WARN:', 'warn message')
 // make a message greyed out
 log.annotate('Annotate this message')
 ```
+
+##### changelog
+
+##### v0.0.3
+log.error now converts errors for better logging
