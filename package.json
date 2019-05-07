@@ -1,6 +1,6 @@
 {
   "name": "@magic/log",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "enhanced console.log",
   "main": "src/index.js",
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
