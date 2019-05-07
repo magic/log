@@ -2,10 +2,7 @@ module.exports = () => [
   h1('@magic/log'),
   p('nodejs console.log with loglevels and environment awareness.'),
 
-  GitBadges({
-    project: 'magic/log',
-    appveyor: 'jaeh/log',
-  }),
+  GitBadges('magic/log'),
 
   h2({ id: 'getting-started' }, 'Getting started'),
   p('be in a nodejs project.'),
