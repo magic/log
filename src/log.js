@@ -54,6 +54,10 @@ log.success = (a, ...b) => log.info(paint('green', a), ...b)
 
 log.error = (...args) => {
   const [a, ...b] = args
+  if (is.error(a)) {
+    console.error(paint('red', a.message), ...b)
+    return
+  }
   const msg = [paint('red', a), ...b]
   console.error(...msg)
   return true

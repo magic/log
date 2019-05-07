@@ -1,7 +1,7 @@
 const { is, mock, isProd } = require('@magic/test')
 
 const log = require('../src')
-const colorize = require('../src/lib/colorize')
+// const colorize = require('../src/lib/colorize')
 
 const beforeAll = () => {
   global.oldConsole = console
@@ -26,6 +26,11 @@ const resetLogLevelAndLog = (lvl, fn, msg) => () => {
   log.setLevel(lvl)
   const logResult = log[fn](msg)
   log.setLevel(oldLevel)
+  return logResult
+}
+
+const wrapError = () => {
+  const logResult = console.error(new Error('test'))
   return logResult
 }
 
@@ -112,5 +117,10 @@ module.exports = {
       expect: false,
       info: 'log.timeEnd in logLevel 2 does not log',
     },
+    {
+      fn: () => wrapError(),
+      expect: true,
+      info: 'errors can log',
+    }
   ],
 }
