@@ -29,8 +29,17 @@ const resetLogLevelAndLog = (lvl, fn, msg) => () => {
   return logResult
 }
 
+const resetEnvAndLogLevel = (env, level) => () => {
+  const oldEnv = process.env.NODE_ENV
+  process.env.NODE_ENV = env
+  log.setLevel(level)
+  process.env.NODE_ENV = oldEnv
+  return log.getLevel()
+}
+
+
 const wrapError = () => {
-  const logResult = console.error(new Error('test'))
+  const logResult = log.error(new Error('test'))
   return logResult
 }
 
@@ -118,9 +127,24 @@ module.exports = {
       info: 'log.timeEnd in logLevel 2 does not log',
     },
     {
-      fn: () => wrapError(),
+      fn: resetEnvAndLogLevel('production', -1),
+      expect: 1,
+      info: 'calling setLogLevel with -1 defaults to 0',
+    },
+    {
+      fn: resetEnvAndLogLevel('production', 'production'),
+      expect: 1,
+      info: 'calling setLogLevel with -1 defaults to 0',
+    },
+    {
+      fn: resetEnvAndLogLevel('development', -1),
+      expect: 0,
+      info: 'dev: calling setLogLevel with -1 defaults to 1',
+    },
+    {
+      fn: wrapError,
       expect: true,
       info: 'errors can log',
-    }
+    },
   ],
 }
