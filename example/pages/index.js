@@ -4,7 +4,7 @@ module.exports = () => [
 
   GitBadges('magic/log'),
 
-  h2({ id: 'getting-started' }, 'Getting started'),
+  h2({ id: 'getting-started' }, 'getting started'),
   p('be in a nodejs project.'),
 
   h3({ id: 'install' }, 'install'),

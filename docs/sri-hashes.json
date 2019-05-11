@@ -1,0 +1,13 @@
+{
+  "css": "sha384-dhpx34D1t1/ugddlEXbXuBKGImlDuoKNCeXWz6W57EV6rGwF7Mv1YsSG9zktPDaX",
+  "js": "sha384-HzB8IdOQYjUCFpEEtDblBUGgVVHJ4B8ciOd4FDylcEDxI2eXCJTrcB30FwQa6MGk",
+  "pages": {
+    "/log/": "sha384-2zHU/B8VeVWhMYgapYW4+M9s7TgakSNZ6kuFLZoUzsXoXAcDO1pANwOYgIJxr0Mm",
+    "/log/404/": "sha384-2RwE3yagMoLIQwbUfLp+6H0gBDHLqvimt2yDuPb8cxmjO6/uGeBzBPUlLTB3xkIC"
+  },
+  "static": {
+    "/favicon.ico": "sha384-pf51ay6pZCj3+XlVCPmCKLDFpLj7QP+2heR+/n08WgS7Bve7JMkgubHOkwLzaTr+",
+    "/robots.txt": "sha384-9wIn//xh4CZ8rq2djYNSJA2aRwBDeRuv5o0vc3Cb4vtuVoOitbIpVOlmjpECkS1x",
+    "/sitemap.xml": "sha384-THAZjBMejioWV97onkSy5prAxOG2NcISVLDVpslyI+hmtHKQh/yMylU12i7zDdi4"
+  }
+}
