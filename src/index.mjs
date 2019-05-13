@@ -1,6 +1,6 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const { paint } = require('./lib')
+import { paint } from './lib/index.mjs'
 
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']
@@ -102,4 +102,4 @@ log.timeEnd = a => {
   return true
 }
 
-module.exports = log
+export default log

@@ -1,9 +1,9 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const paint = require('./paint')
-const stringify = require('./stringify')
+import paint from './paint.mjs'
+import stringify from './stringify.mjs'
 
-const colorize = (...args) => {
+export const colorize = (...args) => {
   if (is.empty(args)) {
     return ''
   } else if (args.length === 1) {
@@ -52,4 +52,4 @@ const colorize = (...args) => {
     .trim()
 }
 
-module.exports = colorize
+export default colorize

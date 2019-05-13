@@ -1,7 +1,6 @@
-const { is, mock, isProd } = require('@magic/test')
+import { is, mock, isProd } from '@magic/test'
 
-const log = require('../src')
-// const colorize = require('../src/lib/colorize')
+import log from '../src/index.mjs'
 
 const beforeAll = () => {
   global.oldConsole = console
@@ -42,7 +41,7 @@ const wrapError = () => {
   return logResult
 }
 
-module.exports = {
+export default {
   beforeAll,
   tests: [
     {

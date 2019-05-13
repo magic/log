@@ -1,6 +1,6 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const stringifyByType = a => {
+export const stringifyByType = a => {
   if (is.array(a) && a.length === 1) {
     return stringifyByType(a[0])
   }
@@ -22,12 +22,12 @@ const stringifyByType = a => {
   return '' + a
 }
 
-const byEmptyString = t => t !== ''
+export const byEmptyString = t => t !== ''
 
-const stringify = (...str) =>
+export const stringify = (...str) =>
   str
     .map(stringifyByType)
     .filter(byEmptyString)
     .join(' ')
 
-module.exports = stringify
+export default stringify

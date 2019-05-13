@@ -1,6 +1,6 @@
-const { is } = require('@magic/test')
+import { is } from '@magic/test'
 
-const log = require('../src')
+import log from '../src/index.mjs'
 
 const oldEnv = process.env.NODE_ENV
 
@@ -30,7 +30,7 @@ const resetEnvAndLog = env => () => {
   return lvl
 }
 
-module.exports = [
+export default [
   { fn: resetEnvAndLog('development'), expect: 0 },
   { fn: resetEnvAndLog('production'), expect: 1 },
 ]

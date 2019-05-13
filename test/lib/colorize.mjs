@@ -1,10 +1,10 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const colorize = require('../../src/lib/colorize')
+import colorize from '../../src/lib/colorize.mjs'
 
 const date = new Date(0)
 
-module.exports = {
+export default {
   colors: [
     { fn: () => colorize(), expect: is.string },
     { fn: () => colorize(), expect: '' },

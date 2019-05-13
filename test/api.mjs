@@ -1,12 +1,12 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const log = require('../src')
+import log from '../src/index.mjs'
 
 const logKeys = Object.values(log)
 
 const isProd = () => process.env.NODE_ENV === 'production'
 
-module.exports = [
+export default [
   { fn: () => log, expect: is.function },
   { fn: () => log.levels, expect: is.array },
   { fn: () => log.setLevel, expect: is.function },

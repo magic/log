@@ -1,8 +1,8 @@
-const { is } = require('@magic/test')
+import { is } from '@magic/test'
 
-const paint = require('../../src/lib/paint')
+import paint from '../../src/lib/paint.mjs'
 
-module.exports = [
+export default [
   { fn: () => paint, expect: is.function },
   { fn: paint(123, 'test'), expect: '\u001b[31mtest\u001b[39m' },
   { fn: paint('yell', 'test'), expect: '\u001b[31mtest\u001b[39m' },

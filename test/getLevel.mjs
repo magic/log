@@ -1,6 +1,6 @@
-const { is } = require('@magic/test')
+import { is } from '@magic/test'
 
-const log = require('../src')
+import log from '../src/index.mjs'
 
 const resetEnv = (env, fn, set = false) => () => {
   const oldEnv = process.env.NODE_ENV
@@ -24,7 +24,7 @@ const deleteAndReset = fn => {
   return ret
 }
 
-module.exports = [
+export default [
   { fn: () => log.getLevel, expect: is.function },
   { fn: () => log.getLevel(), expect: isProd() ? 1 : 0 },
   { fn: () => log.resetLevel(), expect: isProd() ? 1 : 0 },

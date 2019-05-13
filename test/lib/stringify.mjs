@@ -1,6 +1,6 @@
-const stringify = require('../../src/lib/stringify')
+import stringify from '../../src/lib/stringify.mjs'
 
-module.exports = [
+export default [
   { fn: () => stringify('test'), expect: 'test' },
   { fn: () => stringify('test', 'test2'), expect: 'test test2' },
   {

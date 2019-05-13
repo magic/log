@@ -1,6 +1,6 @@
-const is = require('@magic/types')
+import is from '@magic/types'
 
-const codes = {
+export const codes = {
   reset: [0, 0],
 
   bold: [1, 22],
@@ -19,7 +19,7 @@ const codes = {
   grey: [94, 39],
 }
 
-const paint = (key = 'red', str) => {
+export const paint = (key = 'red', str) => {
   if (!is.string(key)) {
     key = 'red'
   }
@@ -48,4 +48,4 @@ Object.keys(codes).forEach(code => {
 
 paint.codes = codes
 
-module.exports = paint
+export default paint
