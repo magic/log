@@ -2,7 +2,7 @@
   "name": "@magic/log",
   "version": "0.1.0",
   "description": "enhanced console.log",
-  "main": "src/index.js",
+  "main": "src/index.mjs",
   "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
   "scripts": {
