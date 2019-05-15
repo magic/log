@@ -1,10 +1,13 @@
 {
   "name": "@magic/log",
   "version": "0.1.0",
+  "author": "Wizards & Witches",
   "description": "enhanced console.log",
-  "main": "src/index.mjs",
-  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "license": "AGPL-3.0",
+  "homepage": "https://magic.github.io/test",
+  "main": "src/index.mjs",
+  "module": "src/index.mjs",
+  "type": "module",
   "scripts": {
     "start": "t -p",
     "test": "t --exclude docs example config.js",
@@ -24,7 +27,6 @@
   "bugs": {
     "url": "https://github.com/magic/log/issues"
   },
-  "homepage": "https://github.com/magic/log",
   "devDependencies": {
     "@magic-modules/git-badges": "github:magic-modules/git-badges",
     "@magic-modules/pre": "github:magic-modules/pre",
@@ -37,5 +39,11 @@
   },
   "files": [
     "src"
+  ],
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
   ]
 }
