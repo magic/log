@@ -35,7 +35,7 @@ basically console.log + loglevels + process.env awareness
 
 ##### import
 ```javascript
-const log = require('@magic/log')
+import log from '@magic/log'
 ```
 
 ##### log levels
@@ -84,3 +84,6 @@ log.annotate('Annotate this message')
 
 ##### v0.0.3
 log.error now converts errors for better logging
+
+#### v0.1.0
+use ecmascript modules

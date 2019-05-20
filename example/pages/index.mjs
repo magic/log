@@ -1,4 +1,4 @@
-module.exports = () => [
+export const View = () => [
   h1('@magic/log'),
   p('nodejs console.log with loglevels and environment awareness.'),
 
@@ -9,6 +9,9 @@ module.exports = () => [
 
   h3({ id: 'install' }, 'install'),
   Pre('npm i --save-dev @magic/log'),
+
+  h3({ id: 'import' }, 'import'),
+  Pre("import log from '@magic/log'"),
 
   h2({ id: 'usage' }, 'usage:'),
 
@@ -65,6 +68,14 @@ log.setLevel(2)`),
     h4({ id: 'log-functions-annotate' }, 'annotate'),
     Pre("log.annotate('this message is subtle and greyed out')"),
   ]),
+
+  h4({ id: 'changelog' }, 'changelog'),
+
+  h5({ id: 'changelog-0.0.3' }, '0.0.3'),
+  p('log.error now converts errors for better logging'),
+
+  h5({ id: 'changelog-0.1.0' }, '0.1.0'),
+  p('use ecmascript modules'),
 
   h2({ id: 'source' }, 'source'),
   p([
