@@ -1,6 +1,6 @@
-export const View = () => [
-  h1('@magic/log'),
-  p('nodejs console.log with loglevels and environment awareness.'),
+export const View = state => [
+  h1(state.title),
+  p(state.description),
 
   GitBadges('magic/log'),
 
@@ -84,4 +84,6 @@ log.setLevel(2)`),
     ' and gets built and published to github using ',
     Link({ to: 'https://github.com/magic/core' }, '@magic/core'),
   ]),
+
+  LightSwitch(state),
 ]
