@@ -3,11 +3,11 @@ import { is, mock, isProd } from '@magic/test'
 import log from '../src/index.mjs'
 
 const beforeAll = () => {
-  global.oldConsole = console
+  const oldConsole = console
   global.console = mock.log
 
   return () => {
-    global.console = global.oldConsole
+    global.console = oldConsole
   }
 }
 
@@ -48,6 +48,16 @@ export default {
       fn: () => log.log.toString(),
       expect: log.toString(),
       info: 'log.log and log are the same function',
+    },
+    {
+      fn: () => log.warn('testing'),
+      expect: true,
+      info: 'log.warn returns true in all cases',
+    },
+    {
+      fn: () => log.error('testing'),
+      expect: true,
+      info: 'log.error returns true in both environments',
     },
     {
       fn: resetEnvAndLog('development', 'info', 'test'),
@@ -127,17 +137,17 @@ export default {
     {
       fn: resetEnvAndLogLevel('production', -1),
       expect: 1,
-      info: 'calling setLogLevel with -1 defaults to 0',
+      info: 'prod: calling setLogLevel in production with -1 defaults to 1',
     },
     {
       fn: resetEnvAndLogLevel('production', 'production'),
       expect: 1,
-      info: 'calling setLogLevel with -1 defaults to 0',
+      info: 'prod: calling setLogLevel with -1 defaults to 1',
     },
     {
       fn: resetEnvAndLogLevel('development', -1),
       expect: 0,
-      info: 'dev: calling setLogLevel with -1 defaults to 1',
+      info: 'dev: calling setLogLevel with -1 defaults to 0',
     },
     {
       fn: wrapError,
