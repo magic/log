@@ -87,3 +87,7 @@ log.error now converts errors for better logging
 
 #### v0.1.0
 use ecmascript modules
+
+#### v0.1.1
+bump to get this version to be the default for install.
+0.1.0-cjs was preferred, but is deprecated.
