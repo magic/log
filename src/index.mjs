@@ -63,6 +63,7 @@ log.error = (...args) => {
   }
   const msg = [paint('red', a), ...b]
   console.error(...msg)
+
   return true
 }
 
