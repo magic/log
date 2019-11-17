@@ -32,7 +32,10 @@ export const state = {
     {
       to: '/#changelog',
       text: 'changelog',
-      items: [{ to: '-0.0.3', text: 'v0.0.3' }, { to: '-0.1.0', text: 'v0.1.0' }],
+      items: [
+        { to: '-0.0.3', text: 'v0.0.3' },
+        { to: '-0.1.0', text: 'v0.1.0' },
+      ],
     },
     { to: '/#source', text: 'source' },
   ],
