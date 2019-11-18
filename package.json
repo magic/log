@@ -20,6 +20,9 @@
     "serve": "magic serve",
     "dev": "magic dev"
   },
+  "engine": {
+    "node": ">=12.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/magic/log.git"
