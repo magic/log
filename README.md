@@ -15,8 +15,8 @@ basically console.log + loglevels + process.env awareness
 
 [npm-image]: https://img.shields.io/npm/v/@magic/log.svg
 [npm-url]: https://www.npmjs.com/package/@magic/log
-[travis-image]: https://api.travis-ci.org/magic/log.svg?branch=master
-[travis-url]: https://travis-ci.org/magic/log
+[travis-image]: https://img.shields.io/travis/com/magic/log/master
+[travis-url]: https://travis-ci.com/magic/log
 [appveyor-image]: https://img.shields.io/appveyor/ci/magic/log/master.svg
 [appveyor-url]: https://ci.appveyor.com/project/magic/log/branch/master
 [coveralls-image]: https://coveralls.io/repos/github/magic/log/badge.svg
