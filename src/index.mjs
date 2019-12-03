@@ -107,7 +107,7 @@ log.timeEnd = a => {
 
 log.hrtime = a => process.hrtime(a)
 
-log.timeTaken = (a, msg = '') => {
+log.timeTaken = (a, pre = '', post = '') => {
   const [s, ns] = process.hrtime(a)
   let span = s * 1000000 + ns / 1000
   let unit = 'ns'
@@ -120,7 +120,16 @@ log.timeTaken = (a, msg = '') => {
     span = span / 1000
   }
 
-  const res = `${msg}${span.toFixed(1)}${unit}`
+  span = span.toFixed(1)
+
+  let res = `${span}${unit}`
+
+  if (pre) {
+    res = `${pre} ${res}`
+  }
+  if (post) {
+    res = `${res} ${post}`
+  }
 
   log(res)
 
