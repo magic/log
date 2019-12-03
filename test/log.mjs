@@ -41,6 +41,21 @@ const wrapError = () => {
   return logResult
 }
 
+const generateTime = async () => {
+  const [s, ns] = log.hrtime()
+  return log.hrtime([s, ns - 1000])
+}
+
+const generateTimeLog = async () => {
+  const [s, ns] = log.hrtime()
+  return log.timeTaken([s, ns - 10000])
+}
+
+const generateLongTimeLog = async () => {
+  const [s, ns] = log.hrtime()
+  return log.timeTaken([s, ns - 2000000])
+}
+
 export default {
   beforeAll,
   tests: [
@@ -153,6 +168,38 @@ export default {
       fn: wrapError,
       expect: true,
       info: 'errors can log',
+    },
+    { fn: log.hrtime(), expect: is.array, info: 'log.hrtime returns an array' },
+    { fn: log.hrtime(), expect: is.len.eq(2), info: 'log.hrtime returns an array' },
+    {
+      fn: log.hrtime(),
+      expect: ([s]) => is.number(s),
+      info: 'log.hrtime returns a number as first array val',
+    },
+    {
+      fn: log.hrtime(),
+      expect: ([_, ns]) => is.number(ns),
+      info: 'log.hrtime returns a number as second array val',
+    },
+    {
+      fn: generateTime,
+      expect: ([s]) => s === 0,
+      info: 'log.hrtime returns the delta if given an arg',
+    },
+    {
+      fn: generateTime,
+      expect: ([_, ns]) => ns > 1000,
+      info: 'log.hrtime returns the delta in ns',
+    },
+    {
+      fn: generateTimeLog,
+      expect: t => t.endsWith('ms'),
+      info: 'log.timeTaken returns the delta in ns',
+    },
+    {
+      fn: generateLongTimeLog,
+      expect: t => t.endsWith('s'),
+      info: 'log.timeTaken returns the delta in ns',
     },
   ],
 }

@@ -62,6 +62,7 @@ log.error = (...args) => {
     return true
   }
   const msg = [paint('red', a), ...b]
+
   console.error(...msg)
 
   return true
@@ -74,6 +75,7 @@ log.warn = (...args) => {
 
   const [a, ...b] = args
   const msg = [paint('yellow', a), ...b]
+
   console.warn(...msg)
 
   return true
@@ -101,6 +103,28 @@ log.timeEnd = a => {
 
   console.timeEnd(a)
   return true
+}
+
+log.hrtime = a => process.hrtime(a)
+
+log.timeTaken = (a, msg = '') => {
+  const [s, ns] = process.hrtime(a)
+  let span = s * 1000000 + ns / 1000
+  let unit = 'ns'
+
+  if (span > 1500000) {
+    unit = 's'
+    span = span / 1000000
+  } else if (ns > 1500) {
+    unit = 'ms'
+    span = span / 1000
+  }
+
+  const res = `${msg}${span.toFixed(1)}${unit}`
+
+  log(res)
+
+  return res
 }
 
 export default log
