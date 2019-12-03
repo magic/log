@@ -81,14 +81,21 @@ const delta = log.hrtime(start)
     p('print the s, ms or ns since start'),
     Pre(`
 const start = process.hrtime()
+
+// full signature
+log.timeTaken(start, 'before', 'after'),
+// logs: 'before xxns after'
+
+
 log.timeTaken(start)
-// logs '1ms' or similar.
+// logs 'xxns' or xxms.
 
 let [s, ns] = log.hrtime()
 // simulate passing time, ~1ms here
 ns -= 1000
 log.timeTaken([s, ns], 'optional message will be prepended')
 // logs 'optional message will be prepended xxms'
+
 `),
   ]),
 

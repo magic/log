@@ -85,8 +85,9 @@ const start = log.hrtime()
 // get delta between one hrtime and another
 const delta = log.hrtime(start)
 
-// print the s, ms or ns since start 
-log.timeTaken(start, 'optional message will be prepended')
+// print the s, ms or ns since start
+log.timeTaken(start, 'before', 'after')
+// logs 'before xns after'
 ```
 
 ##### changelog
