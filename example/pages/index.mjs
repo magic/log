@@ -67,6 +67,29 @@ log.setLevel(2)`),
 
     h4({ id: 'log-functions-annotate' }, 'annotate'),
     Pre("log.annotate('this message is subtle and greyed out')"),
+
+    h4({ id: 'log-functions-hrtime' }, 'hrtime'),
+    p('returns process.hrtime to use in log.timeTaken'),
+    Pre(`
+const start = log.hrtime()
+
+// get delta between one hrtime and another
+const delta = log.hrtime(start)
+`),
+
+    h4({ id: 'log-functions-timeTaken' }, 'timeTaken'),
+    p('print the s, ms or ns since start'),
+    Pre(`
+const start = process.hrtime()
+log.timeTaken(start)
+// logs '1ms' or similar.
+
+let [s, ns] = log.hrtime()
+// simulate passing time, ~1ms here
+ns -= 1000
+log.timeTaken([s, ns], 'optional message will be prepended')
+// logs 'optional message will be prepended xxms'
+`),
   ]),
 
   h4({ id: 'changelog' }, 'changelog'),
@@ -80,6 +103,9 @@ log.setLevel(2)`),
   h5({ id: 'changelog-0.1.1' }, '0.1.1'),
   p('bump to get this version to be the default for install.'),
   p('0.1.0-cjs was preferred, but is deprecated for a while now.'),
+
+  h5({ id: 'changelog-0.1.2' }, '0.1.2'),
+  p('add log.hrtime and log.timeTaken'),
 
   h2({ id: 'source' }, 'source'),
   p([

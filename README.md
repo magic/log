@@ -78,6 +78,15 @@ log.warn('WARN:', 'warn message')
 
 // make a message greyed out
 log.annotate('Annotate this message')
+
+// return process.hrtime to use in log.timeTaken
+const start = log.hrtime()
+
+// get delta between one hrtime and another
+const delta = log.hrtime(start)
+
+// print the s, ms or ns since start 
+log.timeTaken(start, 'optional message will be prepended')
 ```
 
 ##### changelog
@@ -91,3 +100,6 @@ use ecmascript modules
 #### v0.1.1
 bump to get this version to be the default for install.
 0.1.0-cjs was preferred, but is deprecated.
+
+#### v0.1.2
+add log.hrtime and log.timeTaken

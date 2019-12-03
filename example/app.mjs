@@ -35,6 +35,8 @@ export const state = {
       items: [
         { to: '-0.0.3', text: 'v0.0.3' },
         { to: '-0.1.0', text: 'v0.1.0' },
+        { to: '-0.1.1', text: 'v0.1.1' },
+        { to: '-0.1.2', text: 'v0.1.2' },
       ],
     },
     { to: '/#source', text: 'source' },
