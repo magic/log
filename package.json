@@ -37,7 +37,7 @@
     "@magic-modules/pre": "0.0.2",
     "@magic-themes/docs": "0.0.2",
     "@magic/core": "0.0.4",
-    "@magic/test": "0.1.23"
+    "@magic/test": "0.1.24"
   },
   "dependencies": {
     "@magic/types": "0.1.2"
