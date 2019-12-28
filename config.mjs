@@ -4,4 +4,5 @@ export default {
   WEB_ROOT: '/log/',
   URL: 'magic.github.io/log',
   THEME: 'docs',
+  HOIST: 'Gdpr',
 }
