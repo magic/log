@@ -92,15 +92,21 @@ log.timeTaken(start, 'before', 'after')
 
 ##### changelog
 
-##### v0.0.3
+#####v0.0.3
 log.error now converts errors for better logging
 
-#### v0.1.0
+#### 0.1.0
 use ecmascript modules
 
-#### v0.1.1
+#### 0.1.1
 bump to get this version to be the default for install.
 0.1.0-cjs was preferred, but is deprecated.
 
-#### v0.1.2
+#### 0.1.2
 add log.hrtime and log.timeTaken
+
+#### 0.1.3
+require node >= 13.5.0
+
+#### 0.1.4 - unreleased
+...
