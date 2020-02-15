@@ -125,10 +125,20 @@ log.timeTaken = (a, pre = '', post = '') => {
   let res = `${span}${unit}`
 
   if (pre) {
-    res = `${pre} ${res}`
+    // do not add a space if this is part of a string concat
+    if (pre.endsWith('"') || pre.endsWith("'")) {
+      res = pre + res
+    } else {
+      res = `${pre} ${res}`
+    }
   }
   if (post) {
-    res = `${res} ${post}`
+    // do not add a space if this is part of a string concat
+    if (post.startsWith('"') || post.startsWith("'")) {
+      res += post
+    } else {
+      res = `${res} ${post}`
+    }
   }
 
   log(res)
