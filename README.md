@@ -108,5 +108,10 @@ add log.hrtime and log.timeTaken
 #### 0.1.3
 require node >= 13.5.0
 
-#### 0.1.4 - unreleased
+#### 0.1.4
+log.timeTaken(time, pre, post):
+if pre ends and post starts with a string delimiter,
+the time value between those string delimiters does not get spaces added around it.
+
+#### 0.1.5 - unreleased
 ...
