@@ -113,5 +113,8 @@ log.timeTaken(time, pre, post):
 if pre ends and post starts with a string delimiter,
 the time value between those string delimiters does not get spaces added around it.
 
-#### 0.1.5 - unreleased
+#### 0.1.5
+bump required node version to 14.2.0
+
+#### 0.1.6 - unreleased
 ...
