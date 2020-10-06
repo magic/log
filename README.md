@@ -116,5 +116,8 @@ the time value between those string delimiters does not get spaces added around 
 #### 0.1.5
 bump required node version to 14.2.0
 
-#### 0.1.6 - unreleased
+#### 0.1.6
+update dependencies
+
+#### 0.1.7 - unreleased
 ...
