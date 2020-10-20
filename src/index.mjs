@@ -4,7 +4,6 @@ import { paint } from './lib/index.mjs'
 
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']
-log.level = log.resetLevel
 
 log.resetLevel = (env = process.env.NODE_ENV) => {
   if (env === 'production') {
@@ -14,6 +13,9 @@ log.resetLevel = (env = process.env.NODE_ENV) => {
   }
   return log.level
 }
+
+/* initialize loglevel */
+log.resetLevel()
 
 log.getLevel = () => (is.number(log.level) ? log.level : log.resetLevel())
 
