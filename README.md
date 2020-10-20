@@ -119,5 +119,8 @@ bump required node version to 14.2.0
 #### 0.1.6
 update dependencies
 
-#### 0.1.7 - unreleased
+#### 0.1.7 
+change log.level initialization
+
+#### 0.1.8 - unreleased
 ...
