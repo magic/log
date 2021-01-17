@@ -122,5 +122,9 @@ update dependencies
 #### 0.1.7 
 change log.level initialization
 
-#### 0.1.8 - unreleased
+#### 0.1.8
+* bump required node version to 14.15.4
+* update dependencies
+
+##### 0.1.9 - unreleased
 ...
