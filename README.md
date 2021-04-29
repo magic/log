@@ -126,5 +126,8 @@ change log.level initialization
 * bump required node version to 14.15.4
 * update dependencies
 
-##### 0.1.9 - unreleased
+##### 0.1.9 
+update dependencies
+
+##### 0.1.10 - unreleased
 ...
