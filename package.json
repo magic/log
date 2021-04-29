@@ -37,12 +37,12 @@
     "@magic-modules/no-spy": "0.0.6",
     "@magic-modules/pre": "0.0.10",
     "@magic-themes/docs": "0.0.13",
-    "@magic/core": "0.0.107",
+    "@magic/core": "0.0.120",
     "@magic/format": "0.0.22",
-    "@magic/test": "0.1.64"
+    "@magic/test": "0.1.68"
   },
   "dependencies": {
-    "@magic/types": "0.1.14"
+    "@magic/types": "0.1.15"
   },
   "files": [
     "src"
