@@ -11,14 +11,16 @@ const beforeAll = () => {
   }
 }
 
-const resetEnvAndLog = (env, fn, msg = 'test') => () => {
-  const oldEnv = process.env.NODE_ENV
-  process.env.NODE_ENV = env
-  log.setLevel()
-  const logResult = log[fn](msg)
-  process.env.NODE_ENV = oldEnv
-  return logResult
-}
+const resetEnvAndLog =
+  (env, fn, msg = 'test') =>
+  () => {
+    const oldEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = env
+    log.setLevel()
+    const logResult = log[fn](msg)
+    process.env.NODE_ENV = oldEnv
+    return logResult
+  }
 
 const resetLogLevelAndLog = (lvl, fn, msg) => () => {
   const oldLevel = log.level

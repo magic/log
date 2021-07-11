@@ -2,17 +2,19 @@ import { is } from '@magic/test'
 
 import log from '../src/index.mjs'
 
-const resetEnv = (env, fn, set = false) => () => {
-  const oldEnv = process.env.NODE_ENV
-  process.env.NODE_ENV = env
-  if (set) {
-    log.setLevel()
-  }
+const resetEnv =
+  (env, fn, set = false) =>
+  () => {
+    const oldEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = env
+    if (set) {
+      log.setLevel()
+    }
 
-  const lvl = log[fn]()
-  process.env.NODE_ENV = oldEnv
-  return lvl
-}
+    const lvl = log[fn]()
+    process.env.NODE_ENV = oldEnv
+    return lvl
+  }
 
 const isProd = () => process.env.NODE_ENV === 'production'
 
