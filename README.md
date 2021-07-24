@@ -129,5 +129,8 @@ change log.level initialization
 ##### 0.1.9 
 update dependencies
 
-##### 0.1.10 - unreleased
+##### 0.1.10
+update @magic/types to avoid circular dependency
+
+##### 0.1.11  - unreleased
 ...
