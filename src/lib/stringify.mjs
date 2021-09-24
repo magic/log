@@ -24,10 +24,6 @@ export const stringifyByType = a => {
 
 export const byEmptyString = t => t !== ''
 
-export const stringify = (...str) =>
-  str
-    .map(stringifyByType)
-    .filter(byEmptyString)
-    .join(' ')
+export const stringify = (...str) => str.map(stringifyByType).filter(byEmptyString).join(' ')
 
 export default stringify
