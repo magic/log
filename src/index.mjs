@@ -58,7 +58,7 @@ log.info = (...msg) => {
 log.success = (title, ...msg) => log.info(paint('green', title), ...msg)
 
 log.error = (error, ...msg) => {
-  if (is.error(a)) {
+  if (is.error(error)) {
     console.error(paint('red', error.message), `\n${error.stack}\n`, ...msg)
     return true
   }
