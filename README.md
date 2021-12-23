@@ -119,18 +119,21 @@ bump required node version to 14.2.0
 #### 0.1.6
 update dependencies
 
-#### 0.1.7 
+#### 0.1.7
 change log.level initialization
 
 #### 0.1.8
 * bump required node version to 14.15.4
 * update dependencies
 
-##### 0.1.9 
+##### 0.1.9
 update dependencies
 
 ##### 0.1.10
 update @magic/types to avoid circular dependency
 
-##### 0.1.11  - unreleased
+##### 0.1.11
+* log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
+* update dependencies
+##### 0.1.12 - unreleased
 ...
