@@ -126,7 +126,7 @@ log.timeTaken = (startTime, oldPre = '', oldPost = '', doLog = true) => {
     config.pre = oldPre
   }
 
-  const [ s, ns ] = process.hrtime(startTime)
+  const [s, ns] = process.hrtime(startTime)
   let span = s * 1000000 + ns / 1000
   let unit = 'ns'
 
