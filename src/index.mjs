@@ -55,62 +55,78 @@ log.info = (...msg) => {
   return true
 }
 
-log.success = (a, ...b) => log.info(paint('green', a), ...b)
+log.success = (title, ...msg) => log.info(paint('green', title), ...msg)
 
-log.error = (...args) => {
-  const [a, ...b] = args
+log.error = (error, ...msg) => {
   if (is.error(a)) {
-    console.error(paint('red', a.message), `\n${a.stack}\n`, ...b)
+    console.error(paint('red', error.message), `\n${error.stack}\n`, ...msg)
     return true
   }
-  const msg = [paint('red', a), ...b]
 
-  console.error(...msg)
+  console.error(paint('red', error), ...msg)
 
   return true
 }
 
-log.warn = (...args) => {
+log.warn = (title, ...msg) => {
   if (log.getLevel() > 1) {
     return false
   }
 
-  const [a, ...b] = args
-  const msg = [paint('yellow', a), ...b]
-
-  console.warn(...msg)
+  console.warn(paint('yellow', title), ...msg)
 
   return true
 }
 
-log.annotate = (...a) => log.info(paint('grey', ...a))
+log.annotate = (...msg) => log.info(paint('grey', ...msg))
 
 log.log = log
 
 log.color = paint
 log.paint = paint
 
-log.time = a => {
-  if (log.getLevel() > 1) {
-    return false
-  }
-  console.time(a)
-  return true
-}
-
-log.timeEnd = a => {
+log.time = (label, doLog = true) => {
   if (log.getLevel() > 1) {
     return false
   }
 
-  console.timeEnd(a)
+  if (doLog) {
+    console.time(label)
+  }
   return true
 }
 
-log.hrtime = a => process.hrtime(a)
+log.timeEnd = (label, doLog = true) => {
+  if (log.getLevel() > 1) {
+    return false
+  }
 
-log.timeTaken = (a, pre = '', post = '') => {
-  const [s, ns] = process.hrtime(a)
+  if (doLog) {
+    console.timeEnd(label)
+  }
+
+  return true
+}
+
+log.hrtime = hrtime => process.hrtime(hrtime)
+
+log.timeTaken = (startTime, oldPre = '', oldPost = '', doLog = true) => {
+  let config = {
+    pre: '',
+    post: oldPost,
+    log: doLog,
+  }
+
+  if (is.objectNative(oldPre)) {
+    config = {
+      ...config,
+      ...oldPre,
+    }
+  } else {
+    config.pre = oldPre
+  }
+
+  const [ s, ns ] = process.hrtime(startTime)
   let span = s * 1000000 + ns / 1000
   let unit = 'ns'
 
@@ -126,7 +142,9 @@ log.timeTaken = (a, pre = '', post = '') => {
 
   let res = `${span}${unit}`
 
-  if (pre) {
+  if (config.pre) {
+    const { pre = '' } = config
+    console.log({ pre })
     // do not add a space if this is part of a string concat
     if (pre.endsWith('"') || pre.endsWith("'")) {
       res = pre + res
@@ -134,7 +152,9 @@ log.timeTaken = (a, pre = '', post = '') => {
       res = `${pre} ${res}`
     }
   }
-  if (post) {
+
+  if (config.post) {
+    const { post } = config
     // do not add a space if this is part of a string concat
     if (post.startsWith('"') || post.startsWith("'")) {
       res += post
@@ -143,7 +163,9 @@ log.timeTaken = (a, pre = '', post = '') => {
     }
   }
 
-  log(res)
+  if (config.log) {
+    log(res)
+  }
 
   return res
 }
