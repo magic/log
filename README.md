@@ -136,5 +136,8 @@ update @magic/types to avoid circular dependency
 * log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
 * update dependencies
 
-##### 0.1.12 - unreleased
+##### 0.1.12
+update dependencies
+
+##### 0.1.13 - unreleased
 ...
