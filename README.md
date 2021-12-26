@@ -139,5 +139,8 @@ update @magic/types to avoid circular dependency
 ##### 0.1.12
 update dependencies
 
-##### 0.1.13 - unreleased
+##### 0.1.13
+remove unwanted log from log.timeTaken
+
+##### 0.1.14 - unreleased
 ...
