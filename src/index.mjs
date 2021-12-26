@@ -144,7 +144,6 @@ log.timeTaken = (startTime, oldPre = '', oldPost = '', doLog = true) => {
 
   if (config.pre) {
     const { pre = '' } = config
-    console.log({ pre })
     // do not add a space if this is part of a string concat
     if (pre.endsWith('"') || pre.endsWith("'")) {
       res = pre + res
