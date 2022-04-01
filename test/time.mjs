@@ -20,19 +20,23 @@ export default [
     info: 'log.timeTaken returns a string',
   },
   {
-    fn: () => log.timeTaken(log.hrtime(), { log: false }),
-    expect: is.str,
+    fn: is.str(log.timeTaken(log.hrtime(), { log: false })),
     info: 'log.timeTaken logs if log: false is not passed',
   },
   {
-    fn: () => log.timeTaken(log.hrtime(), { log: false }),
-    expect: t => t.endsWith('ms'),
-    info: 'log.timeTaken returned string ends with ms',
+    fn: () => log.timeTaken(log.hrtime([0, -500]), { log: false }),
+    expect: t => t.endsWith('μs'),
+    info: 'log.timeTaken returned string for ~500μs ends with μs',
+  },
+  {
+    fn: () => log.timeTaken(log.hrtime([0, -100], { log: false })),
+    expect: t => t.endsWith('μs'),
+    info: 'log.timeTaken can count microseconds'
   },
   {
     fn: () => log.timeTaken([-100, 0]),
     expect: t => t.endsWith('s'),
-    info: 'log.timeTaken returned string ends with ms',
+    info: 'log.timeTaken returned strings end with s',
   },
   {
     fn: () => log.timeTaken([-100, 0]),

@@ -127,15 +127,18 @@ log.timeTaken = (startTime, oldPre = '', oldPost = '', doLog = true) => {
   }
 
   const [s, ns] = process.hrtime(startTime)
-  let span = s * 1000000 + ns / 1000
+  let span = s * 1_000_000_000 + ns
   let unit = 'ns'
 
-  if (span > 1500000) {
+  if (span > 1_100_000_000) {
     unit = 's'
-    span = span / 1000000
-  } else if (ns > 1500) {
+    span /= 1_000_000_000
+  } else if (span > 1_100_000) {
     unit = 'ms'
-    span = span / 1000
+    span /= 1_000_000
+  } else if (span > 1_100) {
+    span /= 1_000
+    unit = 'μs'
   }
 
   span = span.toFixed(1)

@@ -195,13 +195,13 @@ export default {
     },
     {
       fn: generateTimeLog,
-      expect: t => t.endsWith('ms'),
-      info: 'log.timeTaken returns the delta in ns',
+      expect: t => t.endsWith('μs'),
+      info: 'log.timeTaken returns the delta in μs',
     },
     {
       fn: generateLongTimeLog,
       expect: t => t.endsWith('s'),
-      info: 'log.timeTaken returns the delta in ns',
+      info: 'log.timeTaken returns the delta in s',
     },
   ],
 }
