@@ -31,7 +31,7 @@ export default [
   {
     fn: () => log.timeTaken(log.hrtime([0, -100], { log: false })),
     expect: t => t.endsWith('μs'),
-    info: 'log.timeTaken can count microseconds'
+    info: 'log.timeTaken can count microseconds',
   },
   {
     fn: () => log.timeTaken([-100, 0]),
