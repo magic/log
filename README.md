@@ -146,5 +146,8 @@ remove unwanted log from log.timeTaken
 * update dependencies
 * log.timeTaken now also returns μs if needed
 
-##### 0.1.15 - unreleased
+##### 0.1.15
+update dependencies
+
+##### 0.1.16 - unreleased
 ...
