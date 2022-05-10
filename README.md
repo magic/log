@@ -149,5 +149,8 @@ remove unwanted log from log.timeTaken
 ##### 0.1.15
 update dependencies
 
-##### 0.1.16 - unreleased
+##### 0.1.16
+update dependencies
+
+##### 0.1.17 - unreleased
 ...
