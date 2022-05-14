@@ -152,5 +152,8 @@ update dependencies
 ##### 0.1.16
 update dependencies
 
-##### 0.1.17 - unreleased
+##### 0.1.17
+update dependencies
+
+##### 0.1.18 - unreleased
 ...
