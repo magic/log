@@ -27,6 +27,7 @@ basically console.log + loglevels + process.env awareness
 [snyk-url]: https://snyk.io/test/github/magic/log
 
 #### installation:
+
 ```javascript
   npm install @magic/log
 ```
@@ -34,11 +35,13 @@ basically console.log + loglevels + process.env awareness
 #### usage:
 
 ##### import
+
 ```javascript
 import log from '@magic/log'
 ```
 
 ##### log levels
+
 ```javascript
 // set logLevel to all
 log.setLevel('all')
@@ -58,7 +61,6 @@ log.resetLevel()
 // get current logLevel
 log.getLevel()
 ```
-
 
 ##### log functions
 
@@ -96,64 +98,87 @@ log.timeTaken(start, 'before', 'after')
 log.error now converts errors for better logging
 
 #### 0.1.0
+
 use ecmascript modules
 
 #### 0.1.1
+
 bump to get this version to be the default for install.
 0.1.0-cjs was preferred, but is deprecated.
 
 #### 0.1.2
+
 add log.hrtime and log.timeTaken
 
 #### 0.1.3
+
 require node >= 13.5.0
 
 #### 0.1.4
+
 log.timeTaken(time, pre, post):
 if pre ends and post starts with a string delimiter,
 the time value between those string delimiters does not get spaces added around it.
 
 #### 0.1.5
+
 bump required node version to 14.2.0
 
 #### 0.1.6
+
 update dependencies
 
 #### 0.1.7
+
 change log.level initialization
 
 #### 0.1.8
-* bump required node version to 14.15.4
-* update dependencies
+
+- bump required node version to 14.15.4
+- update dependencies
 
 ##### 0.1.9
+
 update dependencies
 
 ##### 0.1.10
+
 update @magic/types to avoid circular dependency
 
 ##### 0.1.11
-* log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
-* update dependencies
+
+- log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
+- update dependencies
 
 ##### 0.1.12
+
 update dependencies
 
 ##### 0.1.13
+
 remove unwanted log from log.timeTaken
 
 ##### 0.1.14
-* update dependencies
-* log.timeTaken now also returns μs if needed
+
+- update dependencies
+- log.timeTaken now also returns μs if needed
 
 ##### 0.1.15
+
 update dependencies
 
 ##### 0.1.16
+
 update dependencies
 
 ##### 0.1.17
+
 update dependencies
 
-##### 0.1.18 - unreleased
+##### 0.1.18
+
+update dependencies
+
+##### 0.1.19 - unreleased
+
 ...
