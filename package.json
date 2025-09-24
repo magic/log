@@ -28,7 +28,7 @@
   "engineStrict": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/magic/log.git"
+    "url": "git+https://github.com/magic/log.git"
   },
   "bugs": {
     "url": "https://github.com/magic/log/issues"
