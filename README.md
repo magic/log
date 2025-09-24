@@ -179,6 +179,12 @@ update dependencies
 
 update dependencies
 
-##### 0.1.19 - unreleased
+##### 0.1.19
+
+- add jsdoc types
+- add tests to get 100% coverage
+- update dependencies
+
+##### 0.1.20 - unreleased
 
 ...
