@@ -1,5 +1,9 @@
 import is from '@magic/types'
 
+/**
+ * @param {any} a
+ * @returns {string}
+ */
 export const stringifyByType = a => {
   if (is.array(a) && a.length === 1) {
     return stringifyByType(a[0])
@@ -8,7 +12,7 @@ export const stringifyByType = a => {
   if (is.string(a)) {
     return a
   } else if (is.number(a)) {
-    return a
+    return `${a}`
   } else if (is.array(a)) {
     return stringify(...a)
   } else if (is.object(a)) {
@@ -22,8 +26,16 @@ export const stringifyByType = a => {
   return '' + a
 }
 
+/**
+ * @param {any} t
+ * @returns {boolean}
+ */
 export const byEmptyString = t => t !== ''
 
+/**
+ * @param {...any} str
+ * @returns {string}
+ */
 export const stringify = (...str) => str.map(stringifyByType).filter(byEmptyString).join(' ')
 
 export default stringify

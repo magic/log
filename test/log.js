@@ -1,11 +1,9 @@
-import { is, mock, isProd } from '@magic/test'
-
+import { is, mock } from '@magic/test'
 import log from '../src/index.js'
 
 const beforeAll = () => {
   const oldConsole = console
   global.console = mock.log
-
   return () => {
     global.console = oldConsole
   }
@@ -43,6 +41,11 @@ const wrapError = () => {
   return logResult
 }
 
+const wrapStringError = () => {
+  const logResult = log.error('string error test')
+  return logResult
+}
+
 const generateTime = async () => {
   const [s, ns] = log.hrtime()
   return log.hrtime([s, ns - 1000])
@@ -61,147 +64,185 @@ const generateLongTimeLog = async () => {
 export default {
   beforeAll,
   tests: [
-    {
-      fn: () => log.log.toString(),
-      expect: log.toString(),
-      info: 'log.log and log are the same function',
-    },
-    {
-      fn: () => log.warn('testing'),
-      expect: true,
-      info: 'log.warn returns true in all cases',
-    },
-    {
-      fn: () => log.error('testing'),
-      expect: true,
-      info: 'log.error returns true in both environments',
-    },
+    { fn: () => log.warn('testing'), expect: true, info: 'log.warn should return true' },
+    { fn: () => log.error('testing'), expect: true, info: 'log.error always returns true' },
+    { fn: wrapError, expect: true, info: 'log.error logs Error objects' },
+    { fn: wrapStringError, expect: true, info: 'log.error logs string errors' },
+
     {
       fn: resetEnvAndLog('development', 'info', 'test'),
       expect: true,
-      info: 'log.info in development logs',
+      info: 'log.info logs in development',
     },
     {
       fn: resetEnvAndLog('production', 'info', 'test'),
       expect: false,
-      info: 'log.info in production does not log',
+      info: 'log.info does not log in production',
     },
+
     {
       fn: resetEnvAndLog('development', 'error', 'test'),
       expect: true,
-      info: 'log.error in development logs',
+      info: 'log.error logs in development',
     },
     {
       fn: resetEnvAndLog('production', 'error', 'test'),
       expect: true,
-      info: 'log.error in production logs',
+      info: 'log.error logs in production',
     },
+
     {
       fn: resetEnvAndLog('development', 'warn', 'test'),
       expect: true,
-      info: 'log.warn in development logs',
+      info: 'log.warn logs in development',
     },
     {
       fn: resetEnvAndLog('production', 'warn', 'test'),
       expect: true,
-      info: 'log.warn in production logs',
+      info: 'log.warn logs in production',
     },
+
     {
       fn: resetEnvAndLog('development', 'annotate', 'test'),
       expect: true,
-      info: 'log.annotate in development logs',
+      info: 'log.annotate logs in development',
     },
     {
       fn: resetEnvAndLog('production', 'annotate', 'test'),
       expect: false,
-      info: 'log.error in production does not log',
+      info: 'log.annotate does not log in production',
     },
+
     {
       fn: resetEnvAndLog('development', 'time', 'test'),
       expect: true,
-      info: 'calling log.time in development logs',
+      info: 'log.time logs in development',
     },
     {
       fn: resetEnvAndLog('development', 'timeEnd', 'test'),
       expect: true,
-      info: 'calling log.timeEnd in development logs',
+      info: 'log.timeEnd logs in development',
     },
     {
       fn: resetEnvAndLog('production', 'time', 'test'),
       expect: true,
-      info: 'calling log.time in production logs',
+      info: 'log.time logs in production',
     },
     {
       fn: resetEnvAndLog('production', 'timeEnd', 'test'),
       expect: true,
-      info: 'calling log.timeEnd in production logs',
+      info: 'log.timeEnd logs in production',
     },
+
     {
       fn: resetLogLevelAndLog(2, 'warn', 'test'),
       expect: false,
-      info: 'calling log.warn in logLevel 2 does not log',
+      info: 'log.warn does not log at level 2',
     },
     {
       fn: resetLogLevelAndLog(2, 'time', 'test'),
       expect: false,
-      info: 'log.time in logLevel 2 does not log',
+      info: 'log.time does not log at level 2',
     },
     {
       fn: resetLogLevelAndLog(2, 'timeEnd', 'test'),
       expect: false,
-      info: 'log.timeEnd in logLevel 2 does not log',
+      info: 'log.timeEnd does not log at level 2',
     },
+
     {
       fn: resetEnvAndLogLevel('production', -1),
       expect: 1,
-      info: 'prod: calling setLogLevel in production with -1 defaults to 1',
+      info: 'Negative level in production resets to 1',
     },
     {
       fn: resetEnvAndLogLevel('production', 'production'),
       expect: 1,
-      info: 'prod: calling setLogLevel with -1 defaults to 1',
+      info: 'Invalid level resets to 1 in production',
     },
     {
       fn: resetEnvAndLogLevel('development', -1),
       expect: 0,
-      info: 'dev: calling setLogLevel with -1 defaults to 0',
+      info: 'Negative level in development resets to 0',
     },
+
     {
-      fn: wrapError,
+      fn: () => log.success('Success title', 'extra message'),
       expect: true,
-      info: 'errors can log',
+      info: 'log.success logs success messages',
     },
-    { fn: log.hrtime(), expect: is.array, info: 'log.hrtime returns an array' },
-    { fn: log.hrtime(), expect: is.len.eq(2), info: 'log.hrtime returns an array' },
     {
-      fn: log.hrtime(),
+      fn: () => log.color('blue', 'test color'),
+      expect: is.string,
+      info: 'log.color returns painted string',
+    },
+    {
+      fn: () => log.paint('blue', 'test paint'),
+      expect: is.string,
+      info: 'log.paint returns painted string',
+    },
+
+    {
+      fn: () => log.resetLevel('production'),
+      expect: 1,
+      info: 'log.resetLevel sets level in production',
+    },
+    {
+      fn: () => log.resetLevel('development'),
+      expect: 0,
+      info: 'log.resetLevel sets level in development',
+    },
+    { fn: () => log.getLevel(), expect: is.number, info: 'log.getLevel returns current level' },
+
+    {
+      fn: () => log.setLevel(null),
+      expect: is.number,
+      info: 'log.setLevel with null resets level',
+    },
+    { fn: () => log.setLevel('warn'), expect: 1, info: 'log.setLevel sets level by name' },
+    { fn: () => log.setLevel(999), expect: 2, info: 'log.setLevel clamps to max level' },
+
+    { fn: () => log.hrtime(), expect: is.array, info: 'log.hrtime returns array' },
+    { fn: () => log.hrtime(), expect: is.len.eq(2), info: 'log.hrtime returns array length 2' },
+    {
+      fn: () => log.hrtime(),
       expect: ([s]) => is.number(s),
-      info: 'log.hrtime returns a number as first array val',
+      info: 'hrtime first element is number',
     },
     {
-      fn: log.hrtime(),
+      fn: () => log.hrtime(),
       expect: ([_, ns]) => is.number(ns),
-      info: 'log.hrtime returns a number as second array val',
+      info: 'hrtime second element is number',
     },
-    {
-      fn: generateTime,
-      expect: ([s]) => s === 0,
-      info: 'log.hrtime returns the delta if given an arg',
-    },
+
+    { fn: generateTime, expect: ([s]) => s === 0, info: 'log.hrtime delta seconds correct' },
     {
       fn: generateTime,
       expect: ([_, ns]) => ns > 1000,
-      info: 'log.hrtime returns the delta in ns',
+      info: 'log.hrtime delta nanoseconds correct',
     },
+
     {
       fn: generateTimeLog,
-      expect: t => t.endsWith('μs'),
-      info: 'log.timeTaken returns the delta in μs',
+      expect: t => t.endsWith('µs'),
+      info: 'log.timeTaken returns µs for short intervals',
     },
     {
       fn: generateLongTimeLog,
       expect: t => t.endsWith('s'),
-      info: 'log.timeTaken returns the delta in s',
+      info: 'log.timeTaken returns s for long intervals',
+    },
+
+    // Edge cases for timeTaken config
+    {
+      fn: () => log.timeTaken([0, 0], { pre: '"PreQuote"', post: '"PostQuote"' }),
+      expect: is.string,
+      info: 'log.timeTaken with quoted pre/post',
+    },
+    {
+      fn: () => log.timeTaken([0, 0], 'PreString', 'PostString', false),
+      expect: is.string,
+      info: 'log.timeTaken with custom strings and no log',
     },
   ],
 }

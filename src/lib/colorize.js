@@ -1,8 +1,15 @@
 import is from '@magic/types'
-
 import paint from './paint.js'
 import stringify from './stringify.js'
 
+/**
+ * @typedef {keyof typeof paint.codes} CodeKey
+ */
+
+/**
+ * @param {...(string | number | (string | number)[])} args
+ * @returns {string}
+ */
 export const colorize = (...args) => {
   if (is.empty(args)) {
     return ''
@@ -11,17 +18,16 @@ export const colorize = (...args) => {
     if (is.array(arg)) {
       return colorize(...arg)
     }
-
     return paint.red(arg)
   }
 
-  if (!args.some(arg => is.fn(paint[arg]))) {
+  if (!args.some(arg => typeof arg === 'string' && is.fn(paint[arg]))) {
     args = ['red', ...args]
   }
 
   return args
     .map((arg, i) => {
-      if (is.function(paint[arg])) {
+      if (typeof arg === 'string' && is.fn(paint[arg])) {
         return ''
       }
 
@@ -38,14 +44,15 @@ export const colorize = (...args) => {
       let colorFn
       if (i > 0) {
         const color = args[i - 1]
-        colorFn = paint[color]
+        if (typeof color === 'string' && paint[color]) {
+          colorFn = paint[color]
+        }
       }
 
       if (is.function(colorFn)) {
         return colorFn(arg)
-      } else {
-        return arg
       }
+      return arg
     })
     .filter(t => t !== '')
     .join(' ')

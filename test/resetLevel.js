@@ -31,6 +31,6 @@ const resetEnvAndLog = env => () => {
 }
 
 export default [
-  { fn: resetEnvAndLog('development'), expect: 0 },
-  { fn: resetEnvAndLog('production'), expect: 1 },
+  { fn: resetEnvAndLog('development'), expect: 0, info: 'development env defaults to log level 0' },
+  { fn: resetEnvAndLog('production'), expect: 1, info: 'production env defaults to log level 1' },
 ]
