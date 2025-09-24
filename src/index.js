@@ -1,6 +1,6 @@
 import is from '@magic/types'
 
-import { paint } from './lib/index.mjs'
+import { paint } from './lib/index.js'
 
 const log = (...args) => console.log(...args)
 log.levels = ['all', 'warn', 'error']

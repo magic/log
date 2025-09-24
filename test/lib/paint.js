@@ -1,6 +1,6 @@
 import { is } from '@magic/test'
 
-import paint from '../../src/lib/paint.mjs'
+import paint from '../../src/lib/paint.js'
 
 export default [
   { fn: () => paint, expect: is.function },

@@ -1,6 +1,6 @@
 import { is } from '@magic/test'
 
-import log from '../src/index.mjs'
+import log from '../src/index.js'
 
 const isProd = () => process.env.NODE_ENV === 'production'
 

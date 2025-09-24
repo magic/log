@@ -5,8 +5,8 @@
   "description": "enhanced console.log",
   "license": "AGPL-3.0",
   "homepage": "https://magic.github.io/log",
-  "main": "src/index.mjs",
-  "module": "src/index.mjs",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "t -p",

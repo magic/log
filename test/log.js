@@ -1,6 +1,6 @@
 import { is, mock, isProd } from '@magic/test'
 
-import log from '../src/index.mjs'
+import log from '../src/index.js'
 
 const beforeAll = () => {
   const oldConsole = console

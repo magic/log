@@ -1,6 +1,6 @@
 import { version } from '@magic/test'
 
-import lib from '../src/index.mjs'
+import lib from '../src/index.js'
 
 const spec = {
   error: 'fn',

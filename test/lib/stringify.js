@@ -1,4 +1,4 @@
-import stringify from '../../src/lib/stringify.mjs'
+import stringify from '../../src/lib/stringify.js'
 
 export default [
   { fn: () => stringify('test'), expect: 'test' },

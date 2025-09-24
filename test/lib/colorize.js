@@ -1,6 +1,6 @@
 import is from '@magic/types'
 
-import colorize from '../../src/lib/colorize.mjs'
+import colorize from '../../src/lib/colorize.js'
 
 const date = new Date(0)
 

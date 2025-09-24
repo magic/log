@@ -1,6 +1,6 @@
 import { is } from '@magic/test'
 
-import log from '../src/index.mjs'
+import log from '../src/index.js'
 
 export default [
   { fn: log.hrtime(), expect: is.arr, info: 'log.hrtime returns an array' },

@@ -1,7 +1,7 @@
 import is from '@magic/types'
 
-import paint from './paint.mjs'
-import stringify from './stringify.mjs'
+import paint from './paint.js'
+import stringify from './stringify.js'
 
 export const colorize = (...args) => {
   if (is.empty(args)) {
