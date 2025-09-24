@@ -28,10 +28,34 @@ const deleteAndReset = fn => {
 
 export default [
   { fn: () => log.getLevel, expect: is.function, info: 'getLevel is a function' },
-  { fn: () => log.getLevel(), expect: isProd() ? 1 : 0, info: 'getLevel returns correct level based on NODE_ENV' },
-  { fn: () => log.resetLevel(), expect: isProd() ? 1 : 0, info: 'resetLevel returns correct level based on NODE_ENV' },
-  { fn: deleteAndReset('resetLevel'), expect: isProd() ? 1 : 0, info: 'resetLevel works when level is undefined' },
-  { fn: deleteAndReset('getLevel'), expect: isProd() ? 1 : 0, info: 'getLevel works when level is undefined' },
-  { fn: resetEnv('production', 'getLevel', true), expect: 1, info: 'getLevel returns 1 when NODE_ENV is production' },
-  { fn: resetEnv('development', 'getLevel', true), expect: 0, info: 'getLevel returns 0 when NODE_ENV is development' },
+  {
+    fn: () => log.getLevel(),
+    expect: isProd() ? 1 : 0,
+    info: 'getLevel returns correct level based on NODE_ENV',
+  },
+  {
+    fn: () => log.resetLevel(),
+    expect: isProd() ? 1 : 0,
+    info: 'resetLevel returns correct level based on NODE_ENV',
+  },
+  {
+    fn: deleteAndReset('resetLevel'),
+    expect: isProd() ? 1 : 0,
+    info: 'resetLevel works when level is undefined',
+  },
+  {
+    fn: deleteAndReset('getLevel'),
+    expect: isProd() ? 1 : 0,
+    info: 'getLevel works when level is undefined',
+  },
+  {
+    fn: resetEnv('production', 'getLevel', true),
+    expect: 1,
+    info: 'getLevel returns 1 when NODE_ENV is production',
+  },
+  {
+    fn: resetEnv('development', 'getLevel', true),
+    expect: 0,
+    info: 'getLevel returns 0 when NODE_ENV is development',
+  },
 ]
