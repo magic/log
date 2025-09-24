@@ -7,6 +7,7 @@
   "homepage": "https://magic.github.io/log",
   "main": "src/index.js",
   "module": "src/index.js",
+  "types": "types/index.d.ts",
   "type": "module",
   "scripts": {
     "start": "t -p",
