@@ -185,6 +185,11 @@ update dependencies
 - add tests to get 100% coverage
 - update dependencies
 
-##### 0.1.20 - unreleased
+##### 0.1.20
+
+- export types from package.json files array
+- update dependencies
+
+##### 0.1.21 - unreleased
 
 ...
