@@ -43,11 +43,11 @@
     "@magic/core": "0.0.156",
     "@magic/format": "0.0.68",
     "@magic/test": "0.2.20",
-    "@types/node": "24.5.2",
-    "typescript": "5.9.2"
+    "@types/node": "24.7.1",
+    "typescript": "5.9.3"
   },
   "dependencies": {
-    "@magic/types": "0.1.26"
+    "@magic/types": "0.1.28"
   },
   "files": [
     "src",
