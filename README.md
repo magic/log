@@ -190,6 +190,10 @@ update dependencies
 - export types from package.json files array
 - update dependencies
 
-##### 0.1.21 - unreleased
+##### 0.1.21
+
+- update dependencies
+
+##### 0.1.22 - unreleased
 
 ...
