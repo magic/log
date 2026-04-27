@@ -21,17 +21,17 @@ export const colorize = (...args) => {
     return paint.red(arg)
   }
 
-  if (!args.some(arg => typeof arg === 'string' && is.fn(paint[arg]))) {
+  if (!args.some(arg => is.string(arg) && is.fn(paint[arg]))) {
     args = ['red', ...args]
   }
 
   return args
     .map((arg, i) => {
-      if (typeof arg === 'string' && is.fn(paint[arg])) {
+      if (is.string(arg) && is.fn(paint[arg])) {
         return ''
       }
 
-      if (!arg) {
+      if (!arg && arg !== 0) {
         return ''
       }
 
