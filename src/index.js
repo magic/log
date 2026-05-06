@@ -9,6 +9,7 @@ import { paint } from './lib/index.js'
  * @typedef {Object} LogMethods
  * @property {string[]} levels
  * @property {number} level
+ * @property {Log} log
  * @property {(env?: string) => number} resetLevel
  * @property {() => number} getLevel
  * @property {(lvl: string | number | null | undefined, env?: string) => number} setLevel
@@ -221,5 +222,8 @@ log.timeTaken = (startTime, oldPre = '', oldPost = '', doLog = true) => {
   }
   return res
 }
+
+log.log = log
+export { log }
 
 export default log
