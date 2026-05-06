@@ -3,9 +3,9 @@ import log from '../src/index.js'
 
 const beforeAll = () => {
   const oldConsole = console
-  global.console = mock.log
+  globalThis.console = mock.log
   return () => {
-    global.console = oldConsole
+    globalThis.console = oldConsole
   }
 }
 
