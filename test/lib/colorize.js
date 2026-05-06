@@ -6,30 +6,114 @@ const date = new Date(0)
 
 export default {
   colors: [
-    { fn: () => colorize(), expect: is.string, info: 'colorize returns string when called with no args' },
+    {
+      fn: () => colorize(),
+      expect: is.string,
+      info: 'colorize returns string when called with no args',
+    },
     { fn: () => colorize(), expect: '', info: 'colorize with no args returns empty string' },
-    { fn: () => colorize('test'), expect: is.string, info: 'colorize returns string for single arg' },
-    { fn: () => colorize('test'), expect: colorize('red', 'test'), info: 'colorize defaults to red' },
-    { fn: () => colorize('test', 'test2'), expect: `${colorize('red', 'test')} test2`, info: 'colorize appends extra args' },
-    { fn: () => colorize(['test', '', 'test3']), expect: '\u001b[31mtest\u001b[39m test3', info: 'colorize handles empty strings in array' },
-    { fn: () => colorize('black', 'STR'), expect: '\u001b[30mSTR\u001b[39m', info: 'colorize applies black' },
-    { fn: () => colorize('red', 'STR'), expect: '\u001b[31mSTR\u001b[39m', info: 'colorize applies red' },
-    { fn: () => colorize('green', 'STR'), expect: '\u001b[32mSTR\u001b[39m', info: 'colorize applies green' },
-    { fn: () => colorize('green', date), expect: `\u001b[32m${date.toString()}\u001b[39m`, info: 'colorize handles Date objects' },
-    { fn: () => colorize(['STR', 'STR']), expect: '\u001b[31mSTR\u001b[39m STR', info: 'colorize applies to first element of array' },
-    { fn: () => colorize('yellow', 'STR'), expect: '\u001b[33mSTR\u001b[39m', info: 'colorize applies yellow' },
-    { fn: () => colorize('blue', 'STR'), expect: '\u001b[34mSTR\u001b[39m', info: 'colorize applies blue' },
-    { fn: () => colorize('purple', 'STR'), expect: '\u001b[35mSTR\u001b[39m', info: 'colorize applies purple' },
-    { fn: () => colorize('cyan', 'STR'), expect: '\u001b[36mSTR\u001b[39m', info: 'colorize applies cyan' },
-    { fn: () => colorize('white', 'STR'), expect: '\u001b[37mSTR\u001b[39m', info: 'colorize applies white' },
-    { fn: () => colorize('STR', 'yellow', 'STR'), expect: 'STR \u001b[33mSTR\u001b[39m', info: 'colorize applies second color to second arg' },
+    {
+      fn: () => colorize('test'),
+      expect: is.string,
+      info: 'colorize returns string for single arg',
+    },
+    {
+      fn: () => colorize('test'),
+      expect: colorize('red', 'test'),
+      info: 'colorize defaults to red',
+    },
+    {
+      fn: () => colorize('test', 'test2'),
+      expect: `${colorize('red', 'test')} test2`,
+      info: 'colorize appends extra args',
+    },
+    {
+      fn: () => colorize(['test', '', 'test3']),
+      expect: '\u001b[31mtest\u001b[39m test3',
+      info: 'colorize handles empty strings in array',
+    },
+    {
+      fn: () => colorize('black', 'STR'),
+      expect: '\u001b[30mSTR\u001b[39m',
+      info: 'colorize applies black',
+    },
+    {
+      fn: () => colorize('red', 'STR'),
+      expect: '\u001b[31mSTR\u001b[39m',
+      info: 'colorize applies red',
+    },
+    {
+      fn: () => colorize('green', 'STR'),
+      expect: '\u001b[32mSTR\u001b[39m',
+      info: 'colorize applies green',
+    },
+    {
+      fn: () => colorize('green', date),
+      expect: `\u001b[32m${date.toString()}\u001b[39m`,
+      info: 'colorize handles Date objects',
+    },
+    {
+      fn: () => colorize(['STR', 'STR']),
+      expect: '\u001b[31mSTR\u001b[39m STR',
+      info: 'colorize applies to first element of array',
+    },
+    {
+      fn: () => colorize('yellow', 'STR'),
+      expect: '\u001b[33mSTR\u001b[39m',
+      info: 'colorize applies yellow',
+    },
+    {
+      fn: () => colorize('blue', 'STR'),
+      expect: '\u001b[34mSTR\u001b[39m',
+      info: 'colorize applies blue',
+    },
+    {
+      fn: () => colorize('purple', 'STR'),
+      expect: '\u001b[35mSTR\u001b[39m',
+      info: 'colorize applies purple',
+    },
+    {
+      fn: () => colorize('cyan', 'STR'),
+      expect: '\u001b[36mSTR\u001b[39m',
+      info: 'colorize applies cyan',
+    },
+    {
+      fn: () => colorize('white', 'STR'),
+      expect: '\u001b[37mSTR\u001b[39m',
+      info: 'colorize applies white',
+    },
+    {
+      fn: () => colorize('STR', 'yellow', 'STR'),
+      expect: 'STR \u001b[33mSTR\u001b[39m',
+      info: 'colorize applies second color to second arg',
+    },
   ],
   formatting: [
-    { fn: () => colorize('reset', 'STR'), expect: '\u001b[0mSTR\u001b[0m', info: 'colorize applies reset' },
-    { fn: () => colorize('bold', 'STR'), expect: '\u001b[1mSTR\u001b[22m', info: 'colorize applies bold' },
-    { fn: () => colorize('italic', 'STR'), expect: '\u001b[3mSTR\u001b[23m', info: 'colorize applies italic' },
-    { fn: () => colorize('underline', 'STR'), expect: '\u001b[4mSTR\u001b[24m', info: 'colorize applies underline' },
-    { fn: () => colorize('strikethrough', 'STR'), expect: '\u001b[9mSTR\u001b[29m', info: 'colorize applies strikethrough' },
+    {
+      fn: () => colorize('reset', 'STR'),
+      expect: '\u001b[0mSTR\u001b[0m',
+      info: 'colorize applies reset',
+    },
+    {
+      fn: () => colorize('bold', 'STR'),
+      expect: '\u001b[1mSTR\u001b[22m',
+      info: 'colorize applies bold',
+    },
+    {
+      fn: () => colorize('italic', 'STR'),
+      expect: '\x1B[23mSTR\x1B[3m',
+      info: 'colorize applies italic',
+    },
+    {
+      fn: () => colorize('underline', 'STR'),
+      expect: '\u001b[24mSTR\u001b[4m',
+      info: 'colorize applies underline',
+    },
+    {
+      fn: () => colorize('strikethrough', 'STR'),
+      expect: '\u001b[29mSTR\u001b[9m',
+      info: 'colorize applies strikethrough',
+    },
   ],
   arguments: [
     {
