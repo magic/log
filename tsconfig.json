@@ -8,7 +8,9 @@
     "strict": true,
     "moduleResolution": "nodenext",
     "target": "ES2022",
-    "module": "nodenext"
+    "module": "nodenext",
+    "rootDir": "./src",
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
