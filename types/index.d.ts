@@ -3,6 +3,7 @@ export type LogFunction = (...msg: unknown[]) => void
 export type LogMethods = {
   levels: string[]
   level: number
+  log: Log
   resetLevel: (env?: string) => number
   getLevel: () => number
   setLevel: (lvl: string | number | null | undefined, env?: string) => number
@@ -31,6 +32,7 @@ export type Log = LogFunction & LogMethods
  * @typedef {Object} LogMethods
  * @property {string[]} levels
  * @property {number} level
+ * @property {Log} log
  * @property {(env?: string) => number} resetLevel
  * @property {() => number} getLevel
  * @property {(lvl: string | number | null | undefined, env?: string) => number} setLevel
@@ -52,5 +54,5 @@ export type Log = LogFunction & LogMethods
 /**
  * @type {Log}
  */
-declare const log: Log
+export const log: Log
 import { paint } from './lib/index.js'
