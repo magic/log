@@ -123,7 +123,10 @@ log.error = (error, ...msg) => {
  * @returns {boolean}
  */
 log.warn = (title, ...msg) => {
-  if (log.getLevel() > 1) return false
+  if (log.getLevel() > 1) {
+    return false
+  }
+
   console.warn(paint('yellow', title), ...msg)
   return true
 }
@@ -143,8 +146,12 @@ log.paint = paint
  * @returns {boolean}
  */
 log.time = (label, doLog = true) => {
-  if (log.getLevel() > 1) return false
-  if (doLog) console.time(label)
+  if (log.getLevel() > 1) {
+    return false
+  }
+  if (doLog) {
+    console.time(label)
+  }
   return true
 }
 
@@ -154,8 +161,12 @@ log.time = (label, doLog = true) => {
  * @returns {boolean}
  */
 log.timeEnd = (label, doLog = true) => {
-  if (log.getLevel() > 1) return false
-  if (doLog) console.timeEnd(label)
+  if (log.getLevel() > 1) {
+    return false
+  }
+  if (doLog) {
+    console.timeEnd(label)
+  }
   return true
 }
 
