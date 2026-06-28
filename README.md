@@ -199,6 +199,10 @@ update dependencies
 - change exports to export named and default
 - update dependencies
 
-##### 0.1.23 - unreleased
+##### 0.1.23
+
+- update dependencies
+
+##### 0.1.24 - unreleased
 
 ...
