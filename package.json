@@ -1,14 +1,31 @@
 {
   "name": "@magic/log",
   "version": "0.1.23",
-  "author": "Wizards & Witches",
   "description": "enhanced console.log",
-  "license": "AGPL-3.0",
   "homepage": "https://magic.github.io/log",
+  "bugs": {
+    "url": "https://github.com/magic/log/issues"
+  },
+  "license": "AGPL-3.0",
+  "author": "Wizards & Witches",
+  "contributors": [
+    {
+      "name": "jascha ehrenreich",
+      "github": "jaeh"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magic/log.git"
+  },
+  "files": [
+    "src",
+    "types"
+  ],
+  "type": "module",
   "main": "src/index.js",
   "module": "src/index.js",
   "types": "types/index.d.ts",
-  "type": "module",
   "scripts": {
     "start": "t -p",
     "build": "tsc && npm run format",
@@ -22,18 +39,11 @@
     "clean": "magic clean",
     "serve": "magic serve",
     "dev": "magic dev",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "lint": "lint"
   },
-  "engine": {
-    "node": ">=14.15.4"
-  },
-  "engineStrict": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/magic/log.git"
-  },
-  "bugs": {
-    "url": "https://github.com/magic/log/issues"
+  "dependencies": {
+    "@magic/types": "0.1.40"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -43,26 +53,18 @@
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.161",
     "@magic/format": "0.0.79",
+    "@magic/lint": "0.0.5",
     "@magic/log": "0.1.23",
     "@magic/test": "0.3.55",
     "@types/node": "26.6.6",
     "typescript": "7.0.2"
   },
-  "dependencies": {
-    "@magic/types": "0.1.40"
-  },
-  "files": [
-    "src",
-    "types"
-  ],
-  "contributors": [
-    {
-      "name": "jascha ehrenreich",
-      "github": "jaeh"
-    }
-  ],
+  "engineStrict": true,
   "allowScripts": {
     "canvas@3.2.3": true,
     "@swc/core@1.15.47": true
+  },
+  "engine": {
+    "node": ">=14.15.4"
   }
 }
