@@ -41,6 +41,7 @@
     "dev": "magic dev",
     "tsc": "tsc --noEmit",
     "tsc:test": "tsc --noEmit -p tsconfig.test.json",
+    "check": "npm run tsc && npm run tsc:test && npm run lint",
     "lint": "lint"
   },
   "dependencies": {
