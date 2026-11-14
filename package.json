@@ -57,7 +57,7 @@
     "@magic/log": "0.1.23",
     "@magic/test": "0.3.55",
     "@types/node": "26.6.6",
-    "typescript": "7.0.2"
+    "typescript": "npm:@typescript/typescript6"
   },
   "engineStrict": true,
   "allowScripts": {
