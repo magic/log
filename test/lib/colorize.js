@@ -101,17 +101,17 @@ export default {
     },
     {
       fn: () => colorize('italic', 'STR'),
-      expect: '\x1B[23mSTR\x1B[3m',
+      expect: '\u001b[3mSTR\u001b[23m',
       info: 'colorize applies italic',
     },
     {
       fn: () => colorize('underline', 'STR'),
-      expect: '\u001b[24mSTR\u001b[4m',
+      expect: '\u001b[4mSTR\u001b[24m',
       info: 'colorize applies underline',
     },
     {
       fn: () => colorize('strikethrough', 'STR'),
-      expect: '\u001b[29mSTR\u001b[9m',
+      expect: '\u001b[9mSTR\u001b[29m',
       info: 'colorize applies strikethrough',
     },
   ],
