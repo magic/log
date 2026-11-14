@@ -91,7 +91,9 @@ log.setLevel = (lvl, env = process.env.NODE_ENV) => {
  * @returns {boolean}
  */
 log.info = (...msg) => {
-  if (log.getLevel() > 0) return false
+  if (log.getLevel() > 0) {
+    return false
+  }
   console.log(...msg)
   return true
 }
