@@ -40,6 +40,7 @@
     "serve": "magic serve",
     "dev": "magic dev",
     "tsc": "tsc --noEmit",
+    "tsc:test": "tsc --noEmit -p tsconfig.test.json",
     "lint": "lint"
   },
   "dependencies": {
