@@ -41,14 +41,15 @@
     "@magic-modules/no-spy": "0.0.9",
     "@magic-modules/pre": "0.0.12",
     "@magic-themes/docs": "0.0.15",
-    "@magic/core": "0.0.159",
-    "@magic/format": "0.0.74",
-    "@magic/test": "0.3.21",
-    "@types/node": "26.0.1",
-    "typescript": "6.0.3"
+    "@magic/core": "0.0.161",
+    "@magic/format": "0.0.79",
+    "@magic/log": "0.1.23",
+    "@magic/test": "0.3.55",
+    "@types/node": "26.6.6",
+    "typescript": "7.0.2"
   },
   "dependencies": {
-    "@magic/types": "0.1.38"
+    "@magic/types": "0.1.40"
   },
   "files": [
     "src",
@@ -59,5 +60,9 @@
       "name": "jascha ehrenreich",
       "github": "jaeh"
     }
-  ]
+  ],
+  "allowScripts": {
+    "canvas@3.2.3": true,
+    "@swc/core@1.15.47": true
+  }
 }
