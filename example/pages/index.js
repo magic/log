@@ -99,21 +99,6 @@ log.timeTaken([s, ns], 'optional message will be prepended')
 `),
   ]),
 
-  h4({ id: 'changelog' }, 'changelog'),
-
-  h5({ id: 'changelog-0.0.3' }, '0.0.3'),
-  p('log.error now converts errors for better logging'),
-
-  h5({ id: 'changelog-0.1.0' }, '0.1.0'),
-  p('use ecmascript modules'),
-
-  h5({ id: 'changelog-0.1.1' }, '0.1.1'),
-  p('bump to get this version to be the default for install.'),
-  p('0.1.0-cjs was preferred, but is deprecated for a while now.'),
-
-  h5({ id: 'changelog-0.1.2' }, '0.1.2'),
-  p('add log.hrtime and log.timeTaken'),
-
   h2({ id: 'source' }, 'source'),
   p([
     'the source for this page is in the ',
