@@ -6,7 +6,7 @@ export type LogMethods = {
   log: Log
   resetLevel: (env?: string) => number
   getLevel: () => number
-  setLevel: (lvl: string | number | null | undefined, env?: string) => number
+  setLevel: (lvl?: string | number | null | undefined, env?: string) => number
   info: (...msg: unknown[]) => boolean
   success: (title: string, ...msg: unknown[]) => boolean
   error: (error: Error | string, ...msg: unknown[]) => boolean
@@ -35,7 +35,7 @@ export type Log = LogFunction & LogMethods
  * @property {Log} log
  * @property {(env?: string) => number} resetLevel
  * @property {() => number} getLevel
- * @property {(lvl: string | number | null | undefined, env?: string) => number} setLevel
+ * @property {(lvl?: string | number | null | undefined, env?: string) => number} setLevel
  * @property {(...msg: unknown[]) => boolean} info
  * @property {(title: string, ...msg: unknown[]) => boolean} success
  * @property {(error: Error | string, ...msg: unknown[]) => boolean} error

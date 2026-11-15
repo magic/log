@@ -12,7 +12,7 @@ import { paint } from './lib/index.js'
  * @property {Log} log
  * @property {(env?: string) => number} resetLevel
  * @property {() => number} getLevel
- * @property {(lvl: string | number | null | undefined, env?: string) => number} setLevel
+ * @property {(lvl?: string | number | null | undefined, env?: string) => number} setLevel
  * @property {(...msg: unknown[]) => boolean} info
  * @property {(title: string, ...msg: unknown[]) => boolean} success
  * @property {(error: Error | string, ...msg: unknown[]) => boolean} error
@@ -64,7 +64,7 @@ log.getLevel = () => (is.number(log.level) ? log.level : log.resetLevel())
  * @param {string} [env=process.env.NODE_ENV]
  * @returns {number}
  */
-log.setLevel = (lvl, env = process.env.NODE_ENV) => {
+log.setLevel = (lvl = undefined, env = process.env.NODE_ENV) => {
   if (is.undefinedOrNull(lvl)) {
     return log.resetLevel()
   }
