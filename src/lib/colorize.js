@@ -7,7 +7,7 @@ import stringify from './stringify.js'
  */
 
 /**
- * @param {...(string | number | (string | number)[])} args
+ * @param {...any} args
  * @returns {string}
  */
 export const colorize = (...args) => {

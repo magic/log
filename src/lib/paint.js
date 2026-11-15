@@ -32,7 +32,7 @@ export const codes = /** @type {const} */ ({
  */
 
 /**
- * @typedef {((key: string, ...str: (string | number)[]) => string ) & { codes: typeof codes } & Record<CodeKey, (str?: string | number) => string>} PaintFn
+ * @typedef {((key: string | number, ...str: (string | number | (string | number)[])[]) => string) & { codes: typeof codes } & Record<CodeKey, (str?: string | number) => string>} PaintFn
  */
 
 /**
