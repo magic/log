@@ -170,6 +170,10 @@ Smart spacing: if `pre` ends with `"` or `'`, no space added before time. If `po
 
 ## changelog
 
+### 0.1.25
+
+- update dependencies
+
 ### 0.1.24
 
 - **setLevel parameter made optional**: `log.setLevel()` without arguments now calls `resetLevel()` (mirrors 0.1.23+ behavior)
