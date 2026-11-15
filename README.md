@@ -1,57 +1,46 @@
 # @magic/log
 
-simple server side logging.
-
-basically console.log + loglevels + process.env awareness
+enhanced console.log with environment-aware log levels.
 
 [html-docs](https://magic.github.io/log)
 
 [![NPM version][npm-image]][npm-url]
-[![Linux Build Status][travis-image]][travis-url]
-[![Windows Build Status][appveyor-image]][appveyor-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
-[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
 
 [npm-image]: https://img.shields.io/npm/v/@magic/log.svg
 [npm-url]: https://www.npmjs.com/package/@magic/log
-[travis-image]: https://img.shields.io/travis/com/magic/log/master
-[travis-url]: https://travis-ci.com/magic/log
-[appveyor-image]: https://img.shields.io/appveyor/ci/magic/log/master.svg
-[appveyor-url]: https://ci.appveyor.com/project/magic/log/branch/master
-[coveralls-image]: https://coveralls.io/repos/github/magic/log/badge.svg
-[coveralls-url]: https://coveralls.io/github/magic/log
-[greenkeeper-image]: https://badges.greenkeeper.io/magic/log.svg
-[greenkeeper-url]: https://badges.greenkeeper.io/magic/log.svg
-[snyk-image]: https://snyk.io/test/github/magic/log/badge.svg
-[snyk-url]: https://snyk.io/test/github/magic/log
 
-#### installation:
+---
 
-```javascript
-  npm install @magic/log
+## installation
+
+```bash
+npm install @magic/log
 ```
 
-#### usage:
-
-##### import
+## import
 
 ```javascript
 import log from '@magic/log'
 ```
 
-##### log levels
+---
+
+## usage
+
+### log levels
+
+Three log levels are available: `all` (0), `warn` (1), `error` (2).
 
 ```javascript
-// set logLevel to all
+// set logLevel to all (default in development)
 log.setLevel('all')
 log.setLevel(0)
 
-// logLevel warn
+// logLevel warn: output warnings and errors only
 log.setLevel('warn')
 log.setLevel(1)
 
-// only log errors:
+// logLevel error: output only errors
 log.setLevel('error')
 log.setLevel(2)
 
@@ -62,7 +51,7 @@ log.resetLevel()
 log.getLevel()
 ```
 
-##### log functions
+### log functions
 
 ```javascript
 // only outputs if logLevel === 'all'
@@ -73,136 +62,238 @@ log.info('Some interesting yet useless information')
 log.success('yay', 'only the first', 'argument was green')
 
 // always outputs. first argument will be red
-log.error('ERROR:', 'error messsage')
+log.error('ERROR:', 'error message')
 
 // outputs if logLevel === 'warn' || 'all'
 log.warn('WARN:', 'warn message')
 
-// make a message greyed out
+// make a message greyed out (only outputs if logLevel === 'all')
 log.annotate('Annotate this message')
 
+// timing utilities
 // return process.hrtime to use in log.timeTaken
 const start = log.hrtime()
 
 // get delta between one hrtime and another
 const delta = log.hrtime(start)
 
-// print the s, ms or ns since start
+// print the s, ms, µs or ns since start
 log.timeTaken(start, 'before', 'after')
 // logs 'before xns after'
+
+// timeTaken with config object (preferred)
+log.timeTaken(start, { pre: 'before ', post: ' after', log: true })
+
+// console.time / timeEnd wrappers (respects log level)
+log.time('my-timer')
+// ... do work
+log.timeEnd('my-timer')
 ```
 
-##### changelog
+### color / paint utilities
 
-#####v0.0.3
-log.error now converts errors for better logging
+The library exports `paint` and `colorize` for ANSI styling:
 
-#### 0.1.0
+```javascript
+import { paint, colorize } from '@magic/log/lib'
 
-use ecmascript modules
+// paint: simple ANSI wrapper
+paint('red', 'error message')
+paint.red('error message')
+paint.bold.green('success')
 
-#### 0.1.1
+// colorize: chain colors with automatic detection
+colorize('green', 'success', 'red', 'error')
+colorize(['bold', 'green', 'success message'])
+```
 
-bump to get this version to be the default for install.
-0.1.0-cjs was preferred, but is deprecated.
+Available styles (via `paint.codes`):
 
-#### 0.1.2
+- reset, bold, italic, underline, strikethrough
+- black, red, green, yellow, blue, purple, cyan, white, grey
 
-add log.hrtime and log.timeTaken
+---
 
-#### 0.1.3
+## api reference
 
-require node >= 13.5.0
+### log object
 
-#### 0.1.4
+| property                                | type                                                                                        | description                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `levels`                                | `string[]`                                                                                  | `['all', 'warn', 'error']`                |
+| `level`                                 | `number`                                                                                    | current level (0=all, 1=warn, 2=error)    |
+| `log`                                   | `LogFunction`                                                                               | default console.log passthrough           |
+| `resetLevel(env?)`                      | `(env?: string) => number`                                                                  | reset based on NODE_ENV                   |
+| `getLevel()`                            | `() => number`                                                                              | get current level                         |
+| `setLevel(lvl?, env?)`                  | `(lvl?: string\|number\|null\|undefined, env?: string) => number`                           | set level by name or index                |
+| `info(...msg)`                          | `(...msg: unknown[]) => boolean`                                                            | log if level === 0                        |
+| `success(title, ...msg)`                | `(title: string, ...msg: unknown[]) => boolean`                                             | green title, logs if level === 0          |
+| `error(err, ...msg)`                    | `(err: Error\|string, ...msg: unknown[]) => boolean`                                        | always logs, red, prints stack for Errors |
+| `warn(title, ...msg)`                   | `(title: string, ...msg: unknown[]) => boolean`                                             | yellow title, logs if level <= 1          |
+| `annotate(...msg)`                      | `(...msg: (string\|number)[]) => boolean`                                                   | greyed out, logs if level === 0           |
+| `color`                                 | `PaintFn`                                                                                   | alias for `paint`                         |
+| `paint`                                 | `PaintFn`                                                                                   | ANSI paint function                       |
+| `time(label, doLog?)`                   | `(label: string, doLog?: boolean) => boolean`                                               | console.time wrapper                      |
+| `timeEnd(label, doLog?)`                | `(label: string, doLog?: boolean) => boolean`                                               | console.timeEnd wrapper                   |
+| `hrtime(start?)`                        | `(start?: [number, number]) => [number, number]`                                            | process.hrtime wrapper                    |
+| `timeTaken(start, pre?, post?, doLog?)` | `(start: [number, number], pre?: string\|object, post?: string, doLog?: boolean) => string` | format elapsed time                       |
 
-log.timeTaken(time, pre, post):
-if pre ends and post starts with a string delimiter,
-the time value between those string delimiters does not get spaces added around it.
+### log.setLevel(lvl?, env?)
 
-#### 0.1.5
+- `lvl`: string ('all'\|'warn'\|'error') or number (0\|1\|2). Optional - if omitted, calls `resetLevel()`.
+- `env`: defaults to `process.env.NODE_ENV`.
+- Returns the new level as a number.
 
-bump required node version to 14.2.0
+### log.timeTaken(startTime, config?)
 
-#### 0.1.6
+Two signatures:
 
-update dependencies
+```javascript
+// legacy positional
+log.timeTaken(startTime, pre, post, doLog)
 
-#### 0.1.7
+// preferred: config object
+log.timeTaken(startTime, {
+  pre: '', // string prepended to time
+  post: '', // string appended to time
+  log: true, // whether to console.log the result
+})
+```
 
-change log.level initialization
+Returns formatted string like `1.2ms`, `500µs`, `2.5s`, etc.
 
-#### 0.1.8
+Auto-scales: ns → µs → ms → s.
 
-- bump required node version to 14.15.4
+Smart spacing: if `pre` ends with `"` or `'`, no space added before time. If `post` starts with `"` or `'`, no space added after time.
+
+---
+
+## changelog
+
+### 0.1.24
+
+- **setLevel parameter made optional**: `log.setLevel()` without arguments now calls `resetLevel()` (mirrors 0.1.23+ behavior)
+- **paint / colorize signatures widened**: accepts `...any` instead of strict string/number arrays
+- **paint internal refactor**: extracted `paintFn` for clarity, type-safe dynamic method attachment
+- **TypeScript 6.x**: downgraded from 7.x for compatibility; added `npm run check` script (tsc + tsc:test + lint)
+- **test fixes**: corrected ANSI code order for italic/underline/strikethrough; fixed microsecond hrtime test values
+- **types updated**: exported types now match runtime (optional setLevel param, widened colorize args)
+- **added oxlint config**: `oxlint.config.ts` for linting
+
+### 0.1.23
+
 - update dependencies
 
-##### 0.1.9
+### 0.1.22
 
-update dependencies
-
-##### 0.1.10
-
-update @magic/types to avoid circular dependency
-
-##### 0.1.11
-
-- log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
+- change exports to export named and default
 - update dependencies
 
-##### 0.1.12
-
-update dependencies
-
-##### 0.1.13
-
-remove unwanted log from log.timeTaken
-
-##### 0.1.14
+### 0.1.21
 
 - update dependencies
-- log.timeTaken now also returns μs if needed
 
-##### 0.1.15
+### 0.1.20
 
-update dependencies
+- export types from package.json files array
+- update dependencies
 
-##### 0.1.16
-
-update dependencies
-
-##### 0.1.17
-
-update dependencies
-
-##### 0.1.18
-
-update dependencies
-
-##### 0.1.19
+### 0.1.19
 
 - add jsdoc types
 - add tests to get 100% coverage
 - update dependencies
 
-##### 0.1.20
-
-- export types from package.json files array
-- update dependencies
-
-##### 0.1.21
+### 0.1.18
 
 - update dependencies
 
-##### 0.1.22
-
-- change exports to export named and default
-- update dependencies
-
-##### 0.1.23
+### 0.1.17
 
 - update dependencies
 
-##### 0.1.24 - unreleased
+### 0.1.16
 
-...
+- update dependencies
+
+### 0.1.15
+
+- update dependencies
+
+### 0.1.14
+
+- update dependencies
+- log.timeTaken now also returns µs if needed
+
+### 0.1.13
+
+- remove unwanted log from log.timeTaken
+
+### 0.1.12
+
+- update dependencies
+
+### 0.1.11
+
+- log.timeTaken now takes a config object as second parameter, `log.timeTaken(time, { pre: '', post: '', log: true })`. three argument call is possible too: `log.timeTaken(time, pre, post, log)`
+- update dependencies
+
+### 0.1.10
+
+- update @magic/types to avoid circular dependency
+
+### 0.1.9
+
+- update dependencies
+
+### 0.1.8
+
+- bump required node version to 14.15.4
+- update dependencies
+
+### 0.1.7
+
+- change log.level initialization
+
+### 0.1.6
+
+- update dependencies
+
+### 0.1.5
+
+- bump required node version to 14.2.0
+
+### 0.1.4
+
+- log.timeTaken(time, pre, post): if pre ends and post starts with a string delimiter, the time value between those string delimiters does not get spaces added around it.
+
+### 0.1.3
+
+- require node >= 13.5.0
+
+### 0.1.2
+
+- add log.hrtime and log.timeTaken
+
+### 0.1.1
+
+- bump to get this version to be the default for install.
+- 0.1.0-cjs was preferred, but is deprecated.
+
+### 0.1.0
+
+- use ecmascript modules
+
+### 0.0.3
+
+- log.error now converts errors for better logging
+
+---
+
+## license
+
+AGPL-3.0
+
+## source
+
+<https://github.com/magic/log>
