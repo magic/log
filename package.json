@@ -45,7 +45,7 @@
     "lint": "lint"
   },
   "dependencies": {
-    "@magic/types": "0.1.41"
+    "@magic/types": "0.1.42"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
