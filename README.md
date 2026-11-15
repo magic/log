@@ -170,6 +170,10 @@ Smart spacing: if `pre` ends with `"` or `'`, no space added before time. If `po
 
 ## changelog
 
+### 0.1.26
+
+- update dependencies
+
 ### 0.1.25
 
 - update dependencies
