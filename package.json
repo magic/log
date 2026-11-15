@@ -45,7 +45,7 @@
     "lint": "lint"
   },
   "dependencies": {
-    "@magic/types": "0.1.40"
+    "@magic/types": "0.1.41"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -56,7 +56,6 @@
     "@magic/core": "0.0.161",
     "@magic/format": "0.0.79",
     "@magic/lint": "0.0.5",
-    "@magic/log": "0.1.23",
     "@magic/test": "0.3.55",
     "@types/node": "26.6.6",
     "typescript": "npm:@typescript/typescript6"
