@@ -24,12 +24,12 @@ export default [
     info: 'log.timeTaken logs if log: false is not passed',
   },
   {
-    fn: () => log.timeTaken(log.hrtime([0, -500]), { log: false }),
+    fn: () => log.timeTaken(log.hrtime([0, 500_000]), { log: false }),
     expect: t => t.endsWith('µs'),
     info: 'log.timeTaken returned string for ~500μs ends with μs',
   },
   {
-    fn: () => log.timeTaken(log.hrtime([0, -100], { log: false })),
+    fn: () => log.timeTaken(log.hrtime([0, 100_000]), { log: false }),
     expect: t => t.endsWith('µs'),
     info: 'log.timeTaken can count microseconds',
   },
