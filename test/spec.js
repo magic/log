@@ -29,4 +29,4 @@ const spec = {
   timeTaken: 'fn',
 }
 
-export default version(lib, spec)
+export default version(/** @type {any} */ (lib), spec)

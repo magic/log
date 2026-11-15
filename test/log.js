@@ -3,7 +3,7 @@ import log from '../src/index.js'
 
 const beforeAll = () => {
   const oldConsole = console
-  globalThis.console = mock.log
+  globalThis.console = /** @type {any} */ (mock.log)
   return () => {
     globalThis.console = oldConsole
   }
