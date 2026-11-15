@@ -1,6 +1,6 @@
 {
   "name": "@magic/log",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "enhanced console.log",
   "homepage": "https://magic.github.io/log",
   "bugs": {
